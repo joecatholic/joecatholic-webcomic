@@ -1,0 +1,24 @@
+---
+layout: default
+title: Joe Catholic - The Latest Comic
+---
+
+{% assign latest_comic = site.comics | where: "published", true | sort: "date" | last %}
+
+{% if latest_comic %}
+<div class="homepage">
+    <div class="episode-status">
+        <p><strong>Episode One is Complete. Episode Two is in Development!</strong></p>
+    </div>
+    
+    {% include comic-display.html comic=latest_comic %}
+    
+    <div class="home-nav">
+        <a href="{{ latest_comic.url }}" class="read-more-btn">View Full Post & Comments</a>
+    </div>
+</div>
+{% else %}
+<div class="homepage">
+    <p>No comics published yet. Check back soon!</p>
+</div>
+{% endif %}

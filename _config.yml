@@ -1,0 +1,57 @@
+# Joe Catholic Webcomic Site Configuration
+title: Joe Catholic
+tagline: An Adventure in Faith and Time!
+description: Follow Joe Catholic on his adventures through faith and time
+url: https://joecatholic.com
+baseurl: ""
+
+# Author information
+author:
+  name: Fr. Christopher J. Decker
+  email: # your email
+  url: http://fatherchrisdecker.com
+
+# Comic-specific settings
+comic:
+  posts_per_page: 1
+  archive_per_page: 20
+  
+# Social links
+social:
+  youtube: "@joecatholicdraws"
+  store: "https://fatherchrisdecker.com/store"
+
+# Build settings
+markdown: kramdown
+permalink: /comic/:title/
+
+# Collections
+collections:
+  comics:
+    output: true
+    permalink: /comic/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "comics"
+    values:
+      layout: "comic"
+      
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Timezone
+timezone: America/New_York
