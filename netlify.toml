@@ -30,7 +30,3 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-# Build plugins for scheduled publishing
-[[plugins]]
-  package = "netlify-plugin-scheduled-publishing"
