@@ -3,8 +3,8 @@ backend:
   repo: joecatholic/joecatholic-webcomic
   branch: main
 
-media_folder: "assets/comics"
-public_folder: "/assets/comics"
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
   - name: "comics"
@@ -12,16 +12,37 @@ collections:
     folder: "_comics"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "comic"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Comic Number", name: "comic_number", widget: "number"}
       - {label: "Episode", name: "episode", widget: "string", default: "Episode 1"}
-      - {label: "Comic Image", name: "image", widget: "image"}
+      - {label: "Comic Image", name: "image", widget: "image", media_folder: "/assets/comics", public_folder: "/assets/comics"}
       - {label: "Alt Text", name: "alt", widget: "string"}
       - {label: "Transcript", name: "transcript", widget: "text", required: false}
       - {label: "Commentary", name: "body", widget: "markdown", required: false}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Characters", name: "characters", widget: "list", required: false}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
+  
+  - name: "blog"
+    label: "Blog"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Author", name: "author", widget: "string", default: "Fr. Christopher J. Decker"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "Brief summary that appears in blog listings"}
+      - {label: "Categories", name: "categories", widget: "list", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Published", name: "published", widget: "boolean", default: true}
