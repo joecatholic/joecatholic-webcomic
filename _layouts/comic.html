@@ -1,0 +1,104 @@
+---
+layout: default
+---
+
+{% assign sorted_comics = site.comics | where: "published", true | sort: "date" %}
+{% assign current_index = nil %}
+
+{% for comic in sorted_comics %}
+  {% if comic.url == page.url %}
+    {% assign current_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+
+{% if current_index %}
+  {% assign prev_index = current_index | minus: 1 %}
+  {% assign next_index = current_index | plus: 1 %}
+  
+  {% if prev_index >= 0 %}
+    {% assign prev_comic = sorted_comics[prev_index] %}
+  {% endif %}
+  
+  {% if next_index < sorted_comics.size %}
+    {% assign next_comic = sorted_comics[next_index] %}
+  {% endif %}
+  
+  {% assign first_comic = sorted_comics | first %}
+  {% assign latest_comic = sorted_comics | last %}
+{% endif %}
+
+<article class="comic-post">
+    <div class="comic-image-container">
+        <img src="{{ page.image }}" alt="{{ page.alt }}" title="{{ page.title }}">
+    </div>
+
+    <nav class="comic-nav">
+        {% if first_comic %}
+            <a href="{{ first_comic.url }}" class="nav-button {% unless prev_comic %}disabled{% endunless %}">Start</a>
+        {% endif %}
+        
+        {% if prev_comic %}
+            <a href="{{ prev_comic.url }}" class="nav-button">← Back</a>
+        {% else %}
+            <span class="nav-button disabled">← Back</span>
+        {% endif %}
+        
+        <a href="/archive" class="nav-button">Archive</a>
+        
+        {% if next_comic %}
+            <a href="{{ next_comic.url }}" class="nav-button">Next →</a>
+        {% else %}
+            <span class="nav-button disabled">Next →</span>
+        {% endif %}
+        
+        {% if latest_comic and page.url != latest_comic.url %}
+            <a href="{{ latest_comic.url }}" class="nav-button">Latest</a>
+        {% endif %}
+    </nav>
+
+    <div class="comic-info">
+        <h1>{{ page.title }}</h1>
+        <p class="comic-date">Posted {{ page.date | date: "%B %d, %Y" }}</p>
+        
+        {% if page.tags %}
+        <div class="tags">
+            <strong>Tags:</strong>
+            {% for tag in page.tags %}
+                <a href="/archive?tag={{ tag | slugify }}" class="tag">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if page.characters %}
+        <div class="characters">
+            <strong>Characters:</strong>
+            {% for character in page.characters %}
+                <a href="/archive?character={{ character | slugify }}" class="character">{{ character }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if page.content != "" %}
+        <div class="comic-commentary">
+            {{ content }}
+        </div>
+        {% endif %}
+        
+        {% if page.transcript %}
+        <details class="transcript">
+            <summary>Transcript</summary>
+            <div class="transcript-content">
+                {{ page.transcript | markdownify }}
+            </div>
+        </details>
+        {% endif %}
+    </div>
+</article>
+
+<!-- Promotional content -->
+<aside class="promo-box">
+    <img src="/assets/images/book-cover.jpg" alt="Joe Catholic Episode 1 Book Cover">
+    <h3>Own the Full Adventure!</h3>
+    <p>Episode 1 now available in print—68 strips of faith, mystery, and action.</p>
+    <a href="https://a.co/d/izKhy1Z" class="buy-button">Buy on Amazon</a>
+</aside>
