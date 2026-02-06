@@ -1,58 +1,28 @@
 backend:
-  name: git-gateway
-  branch: main
+name: github
+repo: joecatholic/joecatholic-webcomic
+branch: main
 
-# Uncomment below to enable local development
-# local_backend: true
-
-media_folder: "assets/comics"
-public_folder: "/assets/comics"
-
-# Allow images to be uploaded
-media_library:
-  name: uploadcare
-  config:
-    publicKey: YOUR_UPLOADCARE_KEY
+media_folder: “assets/comics”
+public_folder: “/assets/comics”
 
 collections:
-  - name: "comics"
-    label: "Comics"
-    folder: "_comics"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "comic"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Comic Number", name: "comic_number", widget: "number"}
-      - {label: "Episode", name: "episode", widget: "string", default: "Episode 1"}
-      - {label: "Comic Image", name: "image", widget: "image"}
-      - {label: "Alt Text", name: "alt", widget: "string"}
-      - {label: "Transcript", name: "transcript", widget: "text", required: false}
-      - {label: "Commentary", name: "body", widget: "markdown", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Characters", name: "characters", widget: "list", required: false}
-      - {label: "Published", name: "published", widget: "boolean", default: true}
-      
-  - name: "pages"
-    label: "Pages"
-    folder: "_pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "page"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      
-  - name: "settings"
-    label: "Settings"
-    files:
-      - label: "Site Settings"
-        name: "site"
-        file: "_data/settings.yml"
-        fields:
-          - {label: "Site Title", name: "title", widget: "string"}
-          - {label: "Tagline", name: "tagline", widget: "string"}
-          - {label: "Current Episode", name: "current_episode", widget: "string"}
-          - {label: "Episode Status", name: "episode_status", widget: "string"}
+
+- name: “comics”
+  label: “Comics”
+  folder: “_comics”
+  create: true
+  slug: “{{year}}-{{month}}-{{day}}-{{slug}}”
+  fields:
+  - {label: “Layout”, name: “layout”, widget: “hidden”, default: “comic”}
+  - {label: “Title”, name: “title”, widget: “string”}
+  - {label: “Publish Date”, name: “date”, widget: “datetime”}
+  - {label: “Comic Number”, name: “comic_number”, widget: “number”}
+  - {label: “Episode”, name: “episode”, widget: “string”, default: “Episode 1”}
+  - {label: “Comic Image”, name: “image”, widget: “image”}
+  - {label: “Alt Text”, name: “alt”, widget: “string”}
+  - {label: “Transcript”, name: “transcript”, widget: “text”, required: false}
+  - {label: “Commentary”, name: “body”, widget: “markdown”, required: false}
+  - {label: “Tags”, name: “tags”, widget: “list”, required: false}
+  - {label: “Characters”, name: “characters”, widget: “list”, required: false}
+  - {label: “Published”, name: “published”, widget: “boolean”, default: true}
