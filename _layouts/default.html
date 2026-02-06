@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="{{ site.title }}">
+                </a>
+            </div>
+            <p class="tagline">{{ site.tagline }}</p>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/archive">Archive</a></li>
+                    <li><a href="{{ site.social.store }}">Books & Merch!</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer>
+        <p>&copy; 1999-{{ 'now' | date: "%Y" }} <a href="{{ site.author.url }}">{{ site.author.name }}</a> and Collarmark Productions.</p>
+        <p><a href="/feed.xml">RSS Feed</a></p>
+    </footer>
+</body>
+</html>
