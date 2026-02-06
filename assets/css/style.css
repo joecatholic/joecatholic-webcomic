@@ -1,0 +1,390 @@
+/* Joe Catholic Webcomic Styles */
+
+:root {
+    --primary-color: #2c5aa0;
+    --secondary-color: #8b0000;
+    --text-color: #333;
+    --bg-color: #ffffff;
+    --border-color: #ddd;
+    --hover-color: #1e3a6e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 500px;
+    height: auto;
+    width: 100%;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    font-style: italic;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s;
+}
+
+nav a:hover {
+    opacity: 0.8;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Comic Display */
+.comic-image-container {
+    text-align: center;
+    margin: 2rem 0;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.comic-image-container img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+}
+
+/* Comic Navigation */
+.comic-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.nav-button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+.nav-button:hover:not(.disabled) {
+    background-color: var(--hover-color);
+}
+
+.nav-button.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Comic Info */
+.comic-info {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.comic-info h1 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.comic-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.tags, .characters {
+    margin: 1rem 0;
+}
+
+.tag, .character {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    margin: 0.25rem;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background-color 0.3s;
+}
+
+.tag:hover, .character:hover {
+    background-color: var(--hover-color);
+}
+
+.comic-commentary {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border-color);
+}
+
+/* Transcript */
+.transcript {
+    margin-top: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+}
+
+.transcript summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.transcript-content {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Promo Box */
+.promo-box {
+    background-color: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.promo-box img {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.promo-box h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.buy-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.75rem 2rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: opacity 0.3s;
+}
+
+.buy-button:hover {
+    opacity: 0.9;
+}
+
+/* Archive Page */
+.archive-page {
+    margin: 2rem 0;
+}
+
+.archive-controls {
+    margin-bottom: 2rem;
+}
+
+#search-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.archive-item {
+    background-color: white;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.archive-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.archive-thumbnail {
+    position: relative;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.archive-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.archive-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+}
+
+.archive-info {
+    padding: 1rem;
+}
+
+.archive-info h3 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.archive-date {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.archive-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Episode Status */
+.episode-status {
+    background-color: #d4edda;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.episode-status p {
+    margin: 0;
+    font-weight: 600;
+    color: #155724;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 4rem;
+}
+
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        gap: 1rem;
+    }
+    
+    .comic-nav {
+        gap: 0.5rem;
+    }
+    
+    .nav-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .archive-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+}
