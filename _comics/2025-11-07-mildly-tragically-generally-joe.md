@@ -1,12 +1,12 @@
 ---
 layout: comic
-title: "Mildly. Tragically. Generally...Joe"
+title: Mildly. Tragically. Generally...Joe
 date: 2025-11-07 07:00:00 -0500
 comic_number: 1
-episode: "Episode 1"
-image: "/assets/comics/JC-E01-001.jpg"
-alt: "Introduction to Joe Catholic"
-tags: 
+episode: Episode 1
+image: /assets/comics/jc-e01-001.jpg
+alt: Introduction to Joe Catholic
+tags:
   - Joe Catholic
   - Introduction
 characters:
