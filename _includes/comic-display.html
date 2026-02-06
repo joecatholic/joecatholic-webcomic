@@ -1,0 +1,29 @@
+{% assign comic = include.comic %}
+
+<article class="comic-display">
+    <div class="comic-image-container">
+        <img src="{{ comic.image }}" alt="{{ comic.alt }}" title="{{ comic.title }}">
+    </div>
+
+    <nav class="comic-nav">
+        <a href="/archive" class="nav-button">Start</a>
+        <a href="/archive" class="nav-button">Archive</a>
+        {% if comic.url %}
+            <a href="{{ comic.url }}" class="nav-button">View Full Post</a>
+        {% endif %}
+    </nav>
+
+    <div class="comic-info">
+        <h1>{{ comic.title }}</h1>
+        <p class="comic-date">Posted {{ comic.date | date: "%B %d, %Y at %l:%M %p" }}</p>
+        
+        {% if comic.tags %}
+        <div class="tags">
+            <strong>Tags:</strong>
+            {% for tag in comic.tags %}
+                <a href="/archive?tag={{ tag | slugify }}" class="tag">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</article>
