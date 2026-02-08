@@ -6,10 +6,11 @@ title: Joe Catholic - The Latest Comic
 {% assign latest_comic = site.comics | where: "published", true | sort: "date" | last %}
 
 {% if latest_comic %}
+<div class="episode-status">
+    <p><strong>Episode One is Complete. Episode Two is in Development!</strong></p>
+</div>
+    
 <div class="homepage">
-    <div class="episode-status">
-        <p><strong>Episode One is Complete. Episode Two is in Development!</strong></p>
-    </div>
     
     {% include comic-display.html comic=latest_comic %}
     

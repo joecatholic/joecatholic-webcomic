@@ -124,6 +124,10 @@ main {
     border: 1px solid var(--rich-brown);
 }
 
+.episode-status {
+    margin: 10px;
+}
+
 /* Comic Display */
 .comic-image-container {
     text-align: center;
