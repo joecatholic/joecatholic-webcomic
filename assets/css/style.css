@@ -1,26 +1,13 @@
-/* ==== JOE CATHOLIC - ADVENTURE MAP THEME ==== */
+/* Joe Catholic Webcomic Styles */
 
-/* Import fonts */
-@import url(‘https://fonts.googleapis.com/css2?family=Special+Elite&family=Open+Sans:wght@400;600;700&display=swap’);
-
-/* Color palette - Adventure/Parchment theme */
 :root {
-–accent: #8b4513;           /* Brown - Links, buttons, accents */
-–accent-foreground: #fff8e7;
-–background: #e6d5b8;       /* Tan - Page background */
-–foreground: #2b2b2b;       /* Dark text */
-–header-background: #b8860b; /* Goldenrod */
-–header-foreground: #fff8e7; /* Cream */
-–parchment: #fff8e7;        /* Light parchment */
-–parchment-dark: #f5e8c7;   /* Darker parchment */
-–border-color: #8b4513;     /* Brown borders */
-–primary-color: #8b4513;    /* For consistency with other styles */
-–secondary-color: #b8860b;
-–text-color: #2b2b2b;
-–hover-color: #a0522d;
+–primary-color: #2c5aa0;
+–secondary-color: #8b0000;
+–text-color: #333;
+–bg-color: #ffffff;
+–border-color: #ddd;
+–hover-color: #1e3a6e;
 }
-
-/* Reset */
 
 - {
   margin: 0;
@@ -28,248 +15,187 @@
   box-sizing: border-box;
   }
 
-/* Body & overall page */
 body {
-background: var(–background);
-font-family: “Special Elite”, cursive;
-color: var(–foreground);
+font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, “Helvetica Neue”, Arial, sans-serif;
 line-height: 1.6;
-}
-
-/* Main wrapper – bordered “paper” container */
-body > * {
-background: var(–parchment);
-margin: 30px auto;
-width: 90%;
-max-width: 1600px;
-border: 4px double var(–border-color);
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+color: var(–text-color);
+background-color: var(–bg-color);
 }
 
 /* Header */
 header {
-background: var(–header-background);
-border-bottom: 3px solid var(–border-color);
-color: var(–header-foreground);
-padding: 20px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 20px;
+background-color: var(–primary-color);
+color: white;
+padding: 1rem 0;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .header-container {
-width: 100%;
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 20px;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 1rem;
+text-align: center;
 }
 
 .logo img {
-width: 300px;
+max-width: 500px;
 height: auto;
-max-width: 100%;
+width: 100%;
 }
 
 .tagline {
-font-family: “Special Elite”, cursive;
 font-size: 1.2rem;
 margin: 0.5rem 0;
 font-style: italic;
-color: var(–header-foreground);
 }
 
 /* Navigation */
-nav {
-background: var(–header-background);
-}
-
 nav ul {
 list-style: none;
 display: flex;
 justify-content: center;
-gap: 0;
+gap: 2rem;
+margin-top: 1rem;
 flex-wrap: wrap;
-padding: 0;
-margin: 0;
-}
-
-nav li {
-margin: 0;
 }
 
 nav a {
-color: var(–header-foreground);
+color: white;
 text-decoration: none;
 font-weight: 600;
-padding: 10px 20px;
-font-size: 1.2em;
-display: block;
-transition: background-color 0.3s;
-font-family: “Special Elite”, cursive;
+transition: opacity 0.3s;
 }
 
 nav a:hover {
-background: var(–hover-color);
+opacity: 0.8;
 }
 
 /* Main Content */
 main {
-padding: 30px;
-background: linear-gradient(to bottom, var(–parchment), var(–parchment-dark));
-min-height: 400px;
-}
-
-/* Headings - Keep Special Elite */
-h1, h2, h3, h4, h5, h6 {
-font-family: “Special Elite”, cursive;
-color: var(–text-color);
-margin-bottom: 1rem;
-}
-
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-
-/* Body text - Open Sans for readability */
-p, li, .post-content, .comic-commentary {
-font-family: “Open Sans”, sans-serif;
-font-size: 1.1em;
-line-height: 1.6;
+max-width: 1200px;
+margin: 2rem auto;
+padding: 0 1rem;
 }
 
 /* Comic Display */
 .comic-image-container {
 text-align: center;
 margin: 2rem 0;
-background: #ffffff;
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+background-color: #f9f9f9;
+padding: 1rem;
+border-radius: 8px;
 }
 
 .comic-image-container img {
 max-width: 100%;
 height: auto;
-display: block;
-margin: 0 auto;
-border: none;
+border: 2px solid var(–border-color);
+border-radius: 4px;
 }
 
-/* Comic Navigation - Adventure style with icons */
+/* Comic Navigation */
 .comic-nav {
-font-family: “Special Elite”, cursive;
-font-size: 0.9em;
-max-width: 600px;
-margin: 40px auto;
-padding: 20px;
-background: linear-gradient(to bottom, var(–parchment), #d2b48c);
-border-radius: 10px;
-border: 2px solid var(–border-color);
 display: flex;
 justify-content: center;
+gap: 1rem;
+margin: 1.5rem 0;
 flex-wrap: wrap;
-gap: 10px;
 }
 
 .nav-button {
 padding: 0.75rem 1.5rem;
-background: var(–accent);
-color: var(–accent-foreground);
+background-color: var(–primary-color);
+color: white;
 text-decoration: none;
 border-radius: 4px;
 font-weight: 600;
-transition: all 0.3s;
+transition: background-color 0.3s;
 display: inline-block;
-font-family: “Special Elite”, cursive;
-border: 2px solid var(–border-color);
 }
 
 .nav-button:hover:not(.disabled) {
-background: var(–hover-color);
-transform: scale(1.05);
+background-color: var(–hover-color);
 }
 
 .nav-button.disabled {
-background: #999;
+background-color: #ccc;
 cursor: not-allowed;
-opacity: 0.5;
-border-color: #666;
+opacity: 0.6;
 }
 
 /* Comic Info */
 .comic-info {
-background: var(–parchment);
+background-color: #f9f9f9;
 padding: 1.5rem;
 border-radius: 8px;
 margin: 2rem 0;
-border: 2px dashed var(–border-color);
 }
 
 .comic-info h1 {
-color: var(–accent);
+color: var(–primary-color);
 margin-bottom: 0.5rem;
-font-family: “Special Elite”, cursive;
 }
 
 .comic-date {
 color: #666;
 font-size: 0.9rem;
 margin-bottom: 1rem;
-font-family: “Open Sans”, sans-serif;
 }
 
-/* Tags */
 .tags, .characters {
 margin: 1rem 0;
 }
 
 .tag, .character {
 display: inline-block;
-background: var(–accent);
-color: var(–accent-foreground);
+background-color: var(–primary-color);
+color: white;
 padding: 0.25rem 0.75rem;
 margin: 0.25rem;
 border-radius: 15px;
 text-decoration: none;
 font-size: 0.85rem;
 transition: background-color 0.3s;
-font-family: “Special Elite”, cursive;
 }
 
 .tag:hover, .character:hover {
-background: var(–hover-color);
+background-color: var(–hover-color);
 }
 
-/* Episode Status */
-.episode-status {
-background: #d8e8d8;
-border: 2px solid var(–border-color);
-border-radius: 8px;
+.comic-commentary {
+margin-top: 1.5rem;
+padding-top: 1.5rem;
+border-top: 2px solid var(–border-color);
+}
+
+/* Transcript */
+.transcript {
+margin-top: 1.5rem;
+border: 1px solid var(–border-color);
+border-radius: 4px;
 padding: 1rem;
-text-align: center;
-margin-bottom: 2rem;
 }
 
-.episode-status p {
-margin: 0;
+.transcript summary {
+cursor: pointer;
 font-weight: 600;
-color: #2b2b2b;
-font-family: “Special Elite”, cursive;
+color: var(–primary-color);
 }
 
-/* Promo Box - Book style */
+.transcript-content {
+margin-top: 1rem;
+padding-top: 1rem;
+border-top: 1px solid var(–border-color);
+}
+
+/* Promo Box */
 .promo-box {
-background: var(–parchment);
-border: 2px solid var(–border-color);
+background-color: #fff3cd;
+border: 2px solid #ffc107;
 border-radius: 8px;
 padding: 1.5rem;
 margin: 2rem 0;
 text-align: center;
-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .promo-box img {
@@ -279,32 +205,33 @@ margin-bottom: 1rem;
 }
 
 .promo-box h3 {
-color: var(–accent);
+color: var(–secondary-color);
 margin-bottom: 0.5rem;
-font-family: “Special Elite”, cursive;
 }
 
 .buy-button {
 display: inline-block;
-background: var(–header-background);
-color: var(–header-foreground);
+background-color: var(–secondary-color);
+color: white;
 padding: 0.75rem 2rem;
 margin-top: 1rem;
 text-decoration: none;
 border-radius: 4px;
 font-weight: 600;
-transition: background-color 0.3s;
-font-family: “Special Elite”, cursive;
-border: 2px solid var(–border-color);
+transition: opacity 0.3s;
 }
 
 .buy-button:hover {
-background: var(–hover-color);
+opacity: 0.9;
 }
 
 /* Archive Page */
 .archive-page {
 margin: 2rem 0;
+}
+
+.archive-controls {
+margin-bottom: 2rem;
 }
 
 #search-box {
@@ -315,8 +242,6 @@ font-size: 1rem;
 border: 2px solid var(–border-color);
 border-radius: 4px;
 margin-bottom: 1rem;
-background: var(–parchment);
-font-family: “Open Sans”, sans-serif;
 }
 
 .filter-buttons {
@@ -328,24 +253,23 @@ margin-top: 1rem;
 
 .filter-btn {
 padding: 0.5rem 1rem;
-background: var(–parchment);
-border: 2px solid var(–accent);
-color: var(–accent);
+background-color: white;
+border: 2px solid var(–primary-color);
+color: var(–primary-color);
 border-radius: 4px;
 cursor: pointer;
 font-weight: 600;
 transition: all 0.3s;
-font-family: “Special Elite”, cursive;
 }
 
 .filter-btn:hover {
-background: var(–accent);
-color: var(–accent-foreground);
+background-color: var(–primary-color);
+color: white;
 }
 
 .filter-btn.active {
-background: var(–accent);
-color: var(–accent-foreground);
+background-color: var(–primary-color);
+color: white;
 }
 
 .archive-grid {
@@ -356,7 +280,7 @@ margin-top: 2rem;
 }
 
 .archive-item {
-background: white;
+background-color: white;
 border: 2px solid var(–border-color);
 border-radius: 8px;
 overflow: hidden;
@@ -384,29 +308,25 @@ display: block;
 position: absolute;
 top: 0;
 right: 0;
-background: var(–accent);
-color: var(–accent-foreground);
+background-color: var(–primary-color);
+color: white;
 padding: 0.5rem 0.75rem;
 font-weight: 600;
-font-family: “Special Elite”, cursive;
 }
 
 .archive-info {
 padding: 1rem;
-background: var(–parchment);
 }
 
 .archive-info h3 {
-color: var(–accent);
+color: var(–primary-color);
 font-size: 1rem;
 margin-bottom: 0.5rem;
-font-family: “Special Elite”, cursive;
 }
 
 .archive-date {
 color: #666;
 font-size: 0.85rem;
-font-family: “Open Sans”, sans-serif;
 }
 
 .archive-item a {
@@ -414,288 +334,60 @@ text-decoration: none;
 color: inherit;
 }
 
+/* Episode Status */
+.episode-status {
+background-color: #d4edda;
+border: 2px solid #28a745;
+border-radius: 8px;
+padding: 1rem;
+text-align: center;
+margin-bottom: 2rem;
+}
+
+.episode-status p {
+margin: 0;
+font-weight: 600;
+color: #155724;
+}
+
 /* Footer */
 footer {
-background: var(–header-background);
-color: var(–header-foreground);
+background-color: var(–primary-color);
+color: white;
 text-align: center;
 padding: 2rem 1rem;
-border-top: 2px solid var(–border-color);
+margin-top: 4rem;
 }
 
 footer a {
-color: var(–header-foreground);
+color: white;
 text-decoration: underline;
 }
 
 footer p {
 margin: 0.5rem 0;
-font-family: “Special Elite”, cursive;
-}
-
-/* Blog Styles - Adventure Theme */
-.blog-page {
-max-width: 1400px;
-margin: 0 auto;
-padding: 2rem 1rem;
-}
-
-.blog-header {
-text-align: center;
-margin-bottom: 3rem;
-padding-bottom: 2rem;
-border-bottom: 2px dashed var(–border-color);
-}
-
-.blog-header h1 {
-font-size: 3rem;
-margin-bottom: 0.5rem;
-color: var(–accent);
-font-family: “Special Elite”, cursive;
-}
-
-.blog-description {
-font-size: 1.2rem;
-color: #666;
-max-width: 600px;
-margin: 0 auto;
-font-family: “Open Sans”, sans-serif;
-}
-
-.blog-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-gap: 2rem;
-margin-bottom: 3rem;
-}
-
-.blog-card {
-background: var(–parchment);
-border-radius: 8px;
-overflow: hidden;
-border: 2px solid var(–border-color);
-box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-transition: transform 0.3s, box-shadow 0.3s;
-display: flex;
-flex-direction: column;
-}
-
-.blog-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.blog-card-image {
-display: block;
-width: 100%;
-height: 250px;
-overflow: hidden;
-background-color: #f0f0f0;
-}
-
-.blog-card-image img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-object-position: center;
-display: block;
-transition: transform 0.3s;
-}
-
-.blog-card:hover .blog-card-image img {
-transform: scale(1.05);
-}
-
-.blog-card-content {
-padding: 1.5rem;
-flex: 1;
-display: flex;
-flex-direction: column;
-}
-
-.blog-card-category {
-display: inline-block;
-background: var(–accent);
-color: var(–accent-foreground);
-padding: 0.25rem 0.75rem;
-border-radius: 15px;
-font-size: 0.85rem;
-font-weight: 600;
-margin-bottom: 1rem;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-align-self: flex-start;
-font-family: “Special Elite”, cursive;
-}
-
-.blog-card-title {
-font-size: 1.5rem;
-margin-bottom: 0.75rem;
-line-height: 1.3;
-font-family: “Special Elite”, cursive;
-}
-
-.blog-card-title a {
-color: var(–text-color);
-text-decoration: none;
-transition: color 0.3s;
-}
-
-.blog-card-title a:hover {
-color: var(–accent);
-}
-
-.blog-card-meta {
-display: flex;
-gap: 1rem;
-margin-bottom: 1rem;
-font-size: 0.9rem;
-color: #666;
-font-family: “Open Sans”, sans-serif;
-}
-
-.blog-card-excerpt {
-color: #555;
-line-height: 1.6;
-margin-bottom: 1rem;
-flex: 1;
-font-family: “Open Sans”, sans-serif;
-}
-
-.blog-card-read-more {
-color: var(–accent);
-font-weight: 600;
-text-decoration: none;
-transition: color 0.3s;
-align-self: flex-start;
-font-family: “Special Elite”, cursive;
-}
-
-.blog-card-read-more:hover {
-color: var(–hover-color);
-}
-
-/* Blog Post Page */
-.blog-post {
-max-width: 800px;
-margin: 2rem auto;
-padding: 0 1rem;
-}
-
-.post-featured-image {
-margin-bottom: 2rem;
-border-radius: 8px;
-overflow: hidden;
-max-height: 500px;
-border: 2px solid var(–border-color);
-}
-
-.post-featured-image img {
-width: 100%;
-height: auto;
-max-height: 500px;
-object-fit: cover;
-display: block;
-}
-
-.post-header {
-text-align: center;
-margin-bottom: 2rem;
-padding-bottom: 2rem;
-border-bottom: 2px dashed var(–border-color);
-}
-
-.post-title {
-font-size: 2.5rem;
-color: var(–accent);
-margin-bottom: 1rem;
-line-height: 1.2;
-font-family: “Special Elite”, cursive;
-}
-
-.post-meta {
-color: #666;
-font-size: 1rem;
-font-family: “Open Sans”, sans-serif;
-}
-
-.post-content {
-font-size: 1.1rem;
-line-height: 1.8;
-color: #333;
-font-family: “Open Sans”, sans-serif;
-}
-
-.post-content h2, .post-content h3 {
-font-family: “Special Elite”, cursive;
-color: var(–accent);
-margin-top: 2rem;
-}
-
-.category-tag {
-display: inline-block;
-background: var(–accent);
-color: var(–accent-foreground);
-padding: 0.25rem 0.75rem;
-margin: 0.25rem;
-border-radius: 15px;
-text-decoration: none;
-font-size: 0.85rem;
-font-weight: 600;
-transition: background-color 0.3s;
-font-family: “Special Elite”, cursive;
-}
-
-.category-tag:hover {
-background: var(–hover-color);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-body > * {
-width: 100%;
-margin: 0;
-border-left: none;
-border-right: none;
-}
-
-main {
-padding: 10px;
-}
-
-.header-container {
-flex-direction: column;
-align-items: flex-start;
-}
-
-.logo img {
-width: 200px;
-}
-
 nav ul {
-gap: 0;
-}
-
-nav a {
-font-size: 1em;
-padding: 8px 15px;
-}
-
-.comic-nav {
-font-size: 0.8em;
-padding: 10px;
-}
-
-.archive-grid {
-grid-template-columns: 1fr;
 gap: 1rem;
 }
 
-.blog-grid {
-grid-template-columns: 1fr;
+```
+.comic-nav {
+    gap: 0.5rem;
 }
 
-.blog-card-image {
-height: 200px;
+.nav-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
 }
+
+.archive-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+```
+
 }
