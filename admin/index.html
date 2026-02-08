@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html>
 <head>
   <meta charset="utf-8" />
@@ -6,9 +7,112 @@
   <meta name="robots" content="noindex" />
   <title>Joe Catholic Admin</title>
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <style>
+    /* Custom admin toolbar */
+    #custom-admin-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #8B2500, #5D4037);
+      color: #F4E8D0;
+      padding: 0.75rem 1.5rem;
+      z-index: 10000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #C9A961;
+    }
+
+```
+#custom-admin-toolbar h1 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #F4E8D0;
+}
+
+.admin-toolbar-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.admin-toolbar-links a {
+  color: #F4E8D0;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-toolbar-links a:hover {
+  background: #D97706;
+  border-color: #C9A961;
+  transform: translateY(-1px);
+}
+
+.admin-toolbar-links a.view-site {
+  background: #C9A961;
+  color: #3E2723;
+  border-color: #3E2723;
+}
+
+.admin-toolbar-links a.view-site:hover {
+  background: #D97706;
+  color: #F4E8D0;
+}
+
+/* Push CMS content down below toolbar */
+body {
+  padding-top: 60px;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  #custom-admin-toolbar {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+  
+  #custom-admin-toolbar h1 {
+    font-size: 1rem;
+  }
+  
+  .admin-toolbar-links {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .admin-toolbar-links a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+```
+
+  </style>
 </head>
 <body>
+  <!-- Custom Admin Toolbar -->
+  <div id="custom-admin-toolbar">
+    <h1>🗺️ Joe Catholic Admin</h1>
+    <div class="admin-toolbar-links">
+      <a href="/" target="_blank" class="view-site">👁️ View Site</a>
+      <a href="/archive" target="_blank">📚 Archive</a>
+      <a href="/blog" target="_blank">📝 Blog</a>
+    </div>
+  </div>
+
   <!-- Include the script that builds the page and powers Netlify CMS -->
+
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
 </body>
 </html>
