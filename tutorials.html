@@ -1,0 +1,158 @@
+---
+layout: default
+title: Drawing Tutorials
+permalink: /tutorials/
+---
+
+<div class="tutorials-page">
+    
+    <header class="tutorials-header">
+        <h1>Joe Catholic Draws</h1>
+        <p class="tutorials-description">Learn to draw comics, characters, and faith-inspired art with Fr. Chris</p>
+    </header>
+
+    <!-- Filter Controls -->
+    <div class="tutorials-controls">
+        
+        <div class="tutorials-filter-row">
+            <button class="tutorial-filter-btn active" data-filter="all">All Tutorials</button>
+            <button class="tutorial-filter-btn" data-filter="live-draw">Live Draws</button>
+            <button class="tutorial-filter-btn" data-filter="quick-draw">Quick Draws</button>
+        </div>
+
+        <div class="tutorials-search-row">
+            <input type="text" id="tutorials-search" placeholder="Search tutorials by title or topic...">
+        </div>
+
+    </div>
+
+    <!-- Results count -->
+    <p class="tutorials-results-count" id="tutorials-results-count"></p>
+
+    <!-- Tutorials Grid -->
+    <div class="tutorials-grid">
+        {% assign all_tutorials = site.tutorials | where: "published", true | sort: "date" | reverse %}
+        {% for tutorial in all_tutorials %}
+        <article class="tutorial-card" 
+                 data-type="{{ tutorial.tutorial_type | slugify }}"
+                 data-title="{{ tutorial.title | downcase }}"
+                 data-topics="{{ tutorial.topics | join: ' ' | downcase }}"
+                 data-series="{{ tutorial.series | downcase }}">
+            
+            <a href="{{ tutorial.url }}" class="tutorial-card-link">
+                
+                <!-- Thumbnail -->
+                <div class="tutorial-card-thumbnail">
+                    {% if tutorial.thumbnail %}
+                    <img src="{{ tutorial.thumbnail }}" alt="{{ tutorial.title }}" loading="lazy">
+                    {% else %}
+                    <div class="tutorial-placeholder">
+                        <span>🎨</span>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="tutorial-card-overlay">
+                        <span class="tutorial-type-badge {{ tutorial.tutorial_type | slugify }}">
+                            {{ tutorial.tutorial_type }}
+                        </span>
+                        {% if tutorial.duration %}
+                        <span class="duration-badge">{{ tutorial.duration }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="tutorial-card-content">
+                    <h3 class="tutorial-card-title">{{ tutorial.title }}</h3>
+                    
+                    <div class="tutorial-card-meta">
+                        <span class="tutorial-card-date">{{ tutorial.date | date: "%b %d, %Y" }}</span>
+                        {% if tutorial.difficulty %}
+                        <span class="difficulty-badge {{ tutorial.difficulty | downcase }}">{{ tutorial.difficulty }}</span>
+                        {% endif %}
+                    </div>
+
+                    {% if tutorial.series %}
+                    <p class="tutorial-card-series">{{ tutorial.series }}</p>
+                    {% endif %}
+
+                    {% if tutorial.excerpt or tutorial.content %}
+                    <p class="tutorial-card-excerpt">
+                        {% if tutorial.excerpt %}
+                            {{ tutorial.excerpt }}
+                        {% else %}
+                            {{ tutorial.content | strip_html | truncatewords: 20 }}
+                        {% endif %}
+                    </p>
+                    {% endif %}
+                </div>
+
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- No results message -->
+    <div class="tutorials-no-results" id="tutorials-no-results" style="display:none;">
+        <p>No tutorials found. Try a different search or filter.</p>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBox = document.getElementById('tutorials-search');
+    const filterButtons = document.querySelectorAll('.tutorial-filter-btn');
+    const tutorialCards = document.querySelectorAll('.tutorial-card');
+    const resultsCount = document.getElementById('tutorials-results-count');
+    const noResults = document.getElementById('tutorials-no-results');
+
+    let currentFilter = 'all';
+
+    // Filter buttons
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.dataset.filter;
+            applyFilters();
+        });
+    });
+
+    // Search
+    searchBox.addEventListener('input', applyFilters);
+
+    function applyFilters() {
+        const searchTerm = searchBox.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        tutorialCards.forEach(card => {
+            const type = card.dataset.type;
+            const title = card.dataset.title;
+            const topics = card.dataset.topics;
+            const series = card.dataset.series;
+
+            const matchesFilter = currentFilter === 'all' || type === currentFilter;
+            const matchesSearch = !searchTerm || 
+                                  title.includes(searchTerm) || 
+                                  topics.includes(searchTerm) ||
+                                  series.includes(searchTerm);
+
+            const visible = matchesFilter && matchesSearch;
+            card.style.display = visible ? 'block' : 'none';
+            if (visible) visibleCount++;
+        });
+
+        // Update results count
+        const total = tutorialCards.length;
+        if (visibleCount === total) {
+            resultsCount.textContent = '';
+        } else {
+            resultsCount.textContent = visibleCount + ' of ' + total + ' tutorials shown';
+        }
+
+        // Show/hide no results
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+});
+</script>
