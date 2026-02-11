@@ -6,10 +6,10 @@ permalink: /archive/
 
 <div class="archive-page">
     <h1>Comic Archive</h1>
-    
+
     <div class="archive-controls">
         <input type="text" id="search-box" placeholder="Search comics by title or tags...">
-        
+
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">All Comics</button>
             {% assign all_episodes = site.comics | map: "episode" | uniq %}
@@ -18,7 +18,7 @@ permalink: /archive/
             {% endfor %}
         </div>
     </div>
-    
+
     <div class="archive-grid">
         {% assign sorted_comics = site.comics | where: "published", true | sort: "date" | reverse %}
         {% for comic in sorted_comics %}
@@ -27,7 +27,7 @@ permalink: /archive/
                 <div class="archive-thumbnail">
                     <img src="{{ comic.image }}" alt="{{ comic.title }}" loading="lazy">
                     <div class="archive-overlay">
-                        <span class="comic-number">#{{ comic.comic_number }}</span>
+                        <span>#{{ comic.comic_number }}</span>
                     </div>
                 </div>
                 <div class="archive-info">
@@ -41,15 +41,13 @@ permalink: /archive/
 </div>
 
 <script>
-// Simple search and filter functionality
 document.addEventListener('DOMContentLoaded', function() {
     const searchBox = document.getElementById('search-box');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const archiveItems = document.querySelectorAll('.archive-item');
-    
+
     let currentFilter = 'all';
-    
-    // Filter by episode
+
     filterButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             filterButtons.forEach(b => b.classList.remove('active'));
@@ -58,28 +56,20 @@ document.addEventListener('DOMContentLoaded', function() {
             applyFilters();
         });
     });
-    
-    // Search functionality
+
     searchBox.addEventListener('input', function() {
         applyFilters();
     });
-    
+
     function applyFilters() {
         const searchTerm = searchBox.value.toLowerCase();
-        
         archiveItems.forEach(item => {
             const title = item.dataset.title;
             const tags = item.dataset.tags;
             const episode = item.dataset.episode;
-            
             const matchesSearch = !searchTerm || title.includes(searchTerm) || tags.includes(searchTerm);
             const matchesFilter = currentFilter === 'all' || episode === currentFilter;
-            
-            if (matchesSearch && matchesFilter) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
+            item.style.display = (matchesSearch && matchesFilter) ? 'block' : 'none';
         });
     }
 });
