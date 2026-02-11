@@ -46,3 +46,65 @@ collections:
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Published", name: "published", widget: "boolean", default: true}
+
+  - name: "tutorials"
+    label: "🎨 Tutorials"
+    label_singular: "Tutorial"
+    folder: "_tutorials"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "tutorial"}
+      - {label: "Title", name: "title", widget: "string", hint: "e.g., 'Drawing Hands - The Basics'"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false, hint: "Tutorial cover image for listings"}
+      
+      - label: "Tutorial Type"
+        name: "tutorial_type"
+        widget: "select"
+        options: ["Live Draw", "Quick Draw"]
+        hint: "Live Draw = full livestream recording, Quick Draw = short focused lesson"
+      
+      - label: "Difficulty Level"
+        name: "difficulty"
+        widget: "select"
+        options: ["Beginner", "Intermediate", "Advanced"]
+        default: "Beginner"
+      
+      - {label: "Duration", name: "duration", widget: "string", required: false, hint: "e.g., '45 min' or '1hr 30min'"}
+      
+      - {label: "YouTube Video ID", name: "youtube_id", widget: "string", required: false, hint: "Just the ID from the URL, e.g., 'dQw4w9WgXcQ'"}
+      
+      - label: "Series"
+        name: "series"
+        widget: "string"
+        required: false
+        hint: "Group related tutorials, e.g., 'Character Design Basics' or 'Joe Catholic Episode 2'"
+      
+      - label: "Materials Needed"
+        name: "materials"
+        widget: "list"
+        required: false
+        hint: "Tools/materials needed for this tutorial"
+      
+      - label: "Topics Covered"
+        name: "topics"
+        widget: "list"
+        required: false
+        hint: "Main topics/techniques covered"
+      
+      - label: "Downloadable Resources"
+        name: "resources"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Resource Name", name: "name", widget: "string"}
+          - {label: "Resource File", name: "file", widget: "file", media_folder: "/assets/tutorial-resources", public_folder: "/assets/tutorial-resources"}
+          - {label: "Description", name: "description", widget: "string", required: false}
+      
+      - {label: "Description/Notes", name: "body", widget: "markdown", hint: "Tutorial description, notes, timestamps, etc."}
+      
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
