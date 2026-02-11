@@ -1,14 +1,14 @@
 ---
 layout: comic
-title: "Mildly, Tragically, Generally...Joe"
+title: Mildly, Tragically, Generally...Joe
 date: 2025-03-06 01:22:50
 comic_number: 1
-episode: "Episode 1"
-image: /assets/comics/1741573002-JC-E01-001.jpg
-alt: ""
-published: true
+episode: Episode 1
+image: /assets/comics/jc-e01-001.jpg
+alt: Wherein we meet Joe Catholic
 characters:
   - Joe Catholic
+published: true
 ---
 
 Hi there! Welcome to what is the re-re-re-reboot of an idea I've had in my head in one form or another for decades. (Gosh, decades?!).  Well, Joe Catholic's first appearance happened on notebook paper in my first semester in the seminary, so that’s over 25 years ago. Wow.
