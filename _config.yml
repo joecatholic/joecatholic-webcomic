@@ -30,6 +30,9 @@ collections:
   comics:
     output: true
     permalink: /comic/:title/
+  tutorials:
+    output: true
+    permalink: /tutorials/:title/
 
 # Defaults
 defaults:
@@ -38,7 +41,12 @@ defaults:
       type: "comics"
     values:
       layout: "comic"
-      
+  - scope:
+      path: ""
+      type: "tutorials"
+    values:
+      layout: "tutorial"
+
 # Plugins
 plugins:
   - jekyll-feed
