@@ -1,0 +1,133 @@
+---
+layout: default
+---
+
+<article class="tutorial-page">
+    
+    <!-- Tutorial Header -->
+    <header class="tutorial-header">
+        <div class="tutorial-meta-badges">
+            <span class="tutorial-type-badge {{ page.tutorial_type | slugify }}">{{ page.tutorial_type }}</span>
+            {% if page.difficulty %}
+            <span class="difficulty-badge {{ page.difficulty | downcase }}">{{ page.difficulty }}</span>
+            {% endif %}
+            {% if page.duration %}
+            <span class="duration-badge">{{ page.duration }}</span>
+            {% endif %}
+        </div>
+        
+        <h1 class="tutorial-title">{{ page.title }}</h1>
+        
+        <div class="tutorial-meta">
+            <span class="tutorial-date">{{ page.date | date: "%B %d, %Y" }}</span>
+            {% if page.series %}
+            <span class="tutorial-series">Series: {{ page.series }}</span>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Video Player -->
+    {% if page.youtube_id %}
+    <div class="tutorial-video">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/{{ page.youtube_id }}" 
+                title="{{ page.title }}"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Main Content Grid -->
+    <div class="tutorial-content-grid">
+        
+        <!-- Left Column: Description & Notes -->
+        <div class="tutorial-main">
+            <div class="tutorial-description">
+                {{ content }}
+            </div>
+        </div>
+
+        <!-- Right Sidebar: Materials & Resources -->
+        <aside class="tutorial-sidebar">
+            
+            {% if page.materials %}
+            <div class="tutorial-panel materials-panel">
+                <h3>🎨 Materials Needed</h3>
+                <ul class="materials-list">
+                    {% for material in page.materials %}
+                    <li>{{ material }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if page.topics %}
+            <div class="tutorial-panel topics-panel">
+                <h3>📚 Topics Covered</h3>
+                <ul class="topics-list">
+                    {% for topic in page.topics %}
+                    <li>{{ topic }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if page.resources %}
+            <div class="tutorial-panel resources-panel">
+                <h3>⬇️ Download Resources</h3>
+                <div class="resources-list">
+                    {% for resource in page.resources %}
+                    <div class="resource-item">
+                        <a href="{{ resource.file }}" class="resource-download" download>
+                            <span class="resource-name">{{ resource.name }}</span>
+                            {% if resource.description %}
+                            <span class="resource-desc">{{ resource.description }}</span>
+                            {% endif %}
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+        </aside>
+    </div>
+
+    <!-- Tags -->
+    {% if page.tags %}
+    <footer class="tutorial-footer">
+        <div class="tutorial-tags">
+            <strong>Tags:</strong>
+            {% for tag in page.tags %}
+                <a href="/tutorials?tag={{ tag | slugify }}" class="tag">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </footer>
+    {% endif %}
+
+    <!-- Related Tutorials -->
+    {% if page.series %}
+    <section class="related-tutorials">
+        <h2>More in "{{ page.series }}"</h2>
+        <div class="related-grid">
+            {% assign related = site.tutorials | where: "series", page.series | where: "published", true | sort: "date" %}
+            {% for tutorial in related limit:3 %}
+                {% if tutorial.url != page.url %}
+                <a href="{{ tutorial.url }}" class="related-card">
+                    {% if tutorial.thumbnail %}
+                    <img src="{{ tutorial.thumbnail }}" alt="{{ tutorial.title }}">
+                    {% endif %}
+                    <h3>{{ tutorial.title }}</h3>
+                    <span class="tutorial-type-badge {{ tutorial.tutorial_type | slugify }}">{{ tutorial.tutorial_type }}</span>
+                </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+</article>
