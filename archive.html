@@ -8,8 +8,48 @@ permalink: /archive/
     <h1>Comic Archive</h1>
 
     <div class="archive-controls">
-        <input type="text" id="search-box" placeholder="Search comics by title or tags...">
 
+        <!-- Text Search -->
+        <div class="archive-search-row">
+            <input type="text" id="search-box" placeholder="Search by title or tag...">
+        </div>
+
+        <!-- Calendar Search -->
+        <div class="archive-calendar-row">
+            <label class="archive-calendar-label" for="calendar-month">Browse by Month:</label>
+            <div class="archive-calendar-selects">
+                <select id="calendar-month" class="calendar-select">
+                    <option value="">All Months</option>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select id="calendar-year" class="calendar-select">
+                    <option value="">All Years</option>
+                    {% assign all_years = site.comics | where: "published", true | map: "date" | sort %}
+                    {% assign year_list = "" %}
+                    {% for d in all_years %}
+                        {% assign y = d | date: "%Y" %}
+                        {% unless year_list contains y %}
+                            {% assign year_list = year_list | append: y | append: "," %}
+                            <option value="{{ y }}">{{ y }}</option>
+                        {% endunless %}
+                    {% endfor %}
+                </select>
+                <button id="calendar-clear" class="calendar-clear-btn">Clear</button>
+            </div>
+        </div>
+
+        <!-- Episode Filter Buttons -->
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">All Comics</button>
             {% assign all_episodes = site.comics | map: "episode" | uniq %}
@@ -17,12 +57,21 @@ permalink: /archive/
                 <button class="filter-btn" data-filter="{{ episode | slugify }}">{{ episode }}</button>
             {% endfor %}
         </div>
+
     </div>
+
+    <!-- Results count -->
+    <p class="archive-results-count" id="results-count"></p>
 
     <div class="archive-grid">
         {% assign sorted_comics = site.comics | where: "published", true | sort: "date" | reverse %}
         {% for comic in sorted_comics %}
-        <div class="archive-item" data-episode="{{ comic.episode | slugify }}" data-tags="{{ comic.tags | join: ' ' | slugify }}" data-title="{{ comic.title | slugify }}">
+        <div class="archive-item"
+             data-episode="{{ comic.episode | slugify }}"
+             data-tags="{{ comic.tags | join: ' ' | downcase }}"
+             data-title="{{ comic.title | downcase }}"
+             data-year="{{ comic.date | date: '%Y' }}"
+             data-month="{{ comic.date | date: '%m' }}">
             <a href="{{ comic.url }}">
                 <div class="archive-thumbnail">
                     <img src="{{ comic.image }}" alt="{{ comic.title }}" loading="lazy">
@@ -38,16 +87,27 @@ permalink: /archive/
         </div>
         {% endfor %}
     </div>
+
+    <div class="archive-no-results" id="no-results" style="display:none;">
+        <p>No comics found. Try a different search or filter.</p>
+    </div>
+
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const searchBox = document.getElementById('search-box');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const archiveItems = document.querySelectorAll('.archive-item');
+    const searchBox       = document.getElementById('search-box');
+    const monthSelect     = document.getElementById('calendar-month');
+    const yearSelect      = document.getElementById('calendar-year');
+    const calendarClear   = document.getElementById('calendar-clear');
+    const filterButtons   = document.querySelectorAll('.filter-btn');
+    const archiveItems    = document.querySelectorAll('.archive-item');
+    const resultsCount    = document.getElementById('results-count');
+    const noResults       = document.getElementById('no-results');
 
     let currentFilter = 'all';
 
+    // Episode filter buttons
     filterButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             filterButtons.forEach(b => b.classList.remove('active'));
@@ -57,20 +117,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    searchBox.addEventListener('input', function() {
+    // Text search
+    searchBox.addEventListener('input', applyFilters);
+
+    // Calendar selects
+    monthSelect.addEventListener('change', applyFilters);
+    yearSelect.addEventListener('change', applyFilters);
+
+    // Clear calendar
+    calendarClear.addEventListener('click', function() {
+        monthSelect.value = '';
+        yearSelect.value = '';
         applyFilters();
     });
 
     function applyFilters() {
-        const searchTerm = searchBox.value.toLowerCase();
+        const searchTerm    = searchBox.value.toLowerCase().trim();
+        const selectedMonth = monthSelect.value;
+        const selectedYear  = yearSelect.value;
+
+        let visibleCount = 0;
+
         archiveItems.forEach(item => {
-            const title = item.dataset.title;
-            const tags = item.dataset.tags;
+            const title   = item.dataset.title;
+            const tags    = item.dataset.tags;
             const episode = item.dataset.episode;
-            const matchesSearch = !searchTerm || title.includes(searchTerm) || tags.includes(searchTerm);
-            const matchesFilter = currentFilter === 'all' || episode === currentFilter;
-            item.style.display = (matchesSearch && matchesFilter) ? 'block' : 'none';
+            const year    = item.dataset.year;
+            const month   = item.dataset.month;
+
+            const matchesSearch   = !searchTerm || title.includes(searchTerm) || tags.includes(searchTerm);
+            const matchesEpisode  = currentFilter === 'all' || episode === currentFilter;
+            const matchesYear     = !selectedYear  || year  === selectedYear;
+            const matchesMonth    = !selectedMonth || month === selectedMonth;
+
+            const visible = matchesSearch && matchesEpisode && matchesYear && matchesMonth;
+            item.style.display = visible ? 'block' : 'none';
+            if (visible) visibleCount++;
         });
+
+        // Update results count
+        const total = archiveItems.length;
+        if (visibleCount === total) {
+            resultsCount.textContent = '';
+        } else {
+            resultsCount.textContent = visibleCount + ' of ' + total + ' comics shown';
+        }
+
+        // Show/hide no results message
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 });
 </script>
