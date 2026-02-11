@@ -1,0 +1,17 @@
+---
+layout: comic
+title: "It’s Worth Everything."
+date: 2025-10-17 12:00:00
+comic_number: 65
+episode: "Episode 1"
+image: /assets/comics/1759196971-JC-E01-062.jpg
+alt: ""
+published: true
+tags:
+  - Joe Catholic
+  - Thomas the Apostle
+characters:
+  - Joe Catholic
+  - Thomas the Apostle
+---
+

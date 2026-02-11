@@ -1,0 +1,17 @@
+---
+layout: comic
+title: "Risk Seeking Understanding"
+date: 2025-05-23 12:00:00
+comic_number: 23
+episode: "Episode 1"
+image: /assets/comics/1747697564-JC-E01-023.jpg
+alt: ""
+published: true
+tags:
+  - Fr. Gabriel Nard
+  - Joe Catholic
+characters:
+  - Fr. Gabriel Nard
+  - Joe Catholic
+---
+
