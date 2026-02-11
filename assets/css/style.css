@@ -1,5 +1,5 @@
 /* Joe Catholic Webcomic - Indiana Jones Adventure Theme */
-/* Includes Blog Styles with Proper Image Sizing */
+/* Includes Blog, Tutorials, and Archive Calendar Grid Styles */
 
 /* Color Palette - Extracted from Indiana Jones aesthetic */
 :root {
@@ -119,20 +119,6 @@ nav li {
     transition: opacity 0.3s;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    flex-wrap: wrap;
-    padding: 0;
-    margin: 0;
-}
-
-nav li {
-    position: relative;
-}
-
 /* Divider between nav items */
 nav li + li::before {
     content: '';
@@ -243,7 +229,6 @@ main {
     max-width: 100%;
     height: auto;
     border: 3px solid var(--dark-brown);
-    border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -264,7 +249,6 @@ main {
     background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
     color: var(--parchment);
     text-decoration: none;
-    border-radius: 4px;
     font-weight: 600;
     transition: all 0.3s;
     display: inline-block;
@@ -399,7 +383,6 @@ main {
     padding: 0.75rem 2rem;
     margin-top: 1rem;
     text-decoration: none;
-    border-radius: 4px;
     font-weight: 700;
     transition: all 0.3s;
     border: 2px solid var(--dark-brown);
@@ -425,19 +408,21 @@ main {
     gap: 1rem;
 }
 
-/* Text Search Row */
+/* Text Search Row with Sort */
 .archive-search-row {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 #search-box {
-    width: 100%;
-    max-width: 200px;
+    flex: 1;
+    max-width: 400px;
     padding: 0.75rem;
     font-size: 1rem;
     border: 2px solid var(--rich-brown);
-    border-radius: 4px;
     background: white;
     color: var(--text-color);
 }
@@ -448,60 +433,142 @@ main {
     box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
 }
 
-/* Calendar Row */
-.archive-calendar-row {
+.archive-sort {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    padding: 1rem;
-    background: linear-gradient(to right, var(--parchment), var(--warm-tan));
-    border: 2px solid var(--rich-brown);
+    gap: 0.5rem;
 }
 
-.archive-calendar-label {
+.archive-sort label {
     font-weight: 600;
     color: var(--deep-red);
     white-space: nowrap;
 }
 
-.archive-calendar-selects {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.calendar-select {
-    padding: 0.5rem 1rem;
+.sort-select {
+    padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--rich-brown);
-    border-radius: 4px;
     background: white;
     color: var(--text-color);
     cursor: pointer;
     transition: border-color 0.3s;
+    font-weight: 600;
 }
 
-.calendar-select:focus {
+.sort-select:focus {
     outline: none;
     border-color: var(--gold);
     box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
 }
 
-.calendar-clear-btn {
-    padding: 0.5rem 1rem;
-    background: var(--grey-accent);
+.sort-select:hover {
+    border-color: var(--gold);
+}
+
+/* Visual Calendar Grid */
+.archive-calendar-grid {
+    padding: 2rem;
+    background: linear-gradient(to bottom, var(--parchment), white);
+    border: 2px solid var(--rich-brown);
+    margin-bottom: 1rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-month-title {
+    font-size: 1.5rem;
+    color: var(--deep-red);
+    font-weight: 700;
+    margin: 0;
+}
+
+.calendar-nav-btn {
+    background: var(--deep-red);
     color: white;
-    border: 2px solid var(--dark-brown);
-    border-radius: 4px;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.calendar-nav-btn:hover {
+    background: var(--orange-pop);
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--grey-accent);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.calendar-weekdays span {
+    padding: 0.5rem;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--rich-brown);
+    background: white;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s;
+    font-size: 0.95rem;
 }
 
-.calendar-clear-btn:hover {
-    background: var(--rich-brown);
+.calendar-day.empty {
+    border: none;
+    background: transparent;
+    cursor: default;
+}
+
+.calendar-day.has-comic {
+    background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
+    color: white;
+    border-color: var(--deep-red);
+}
+
+.calendar-day.has-comic:hover {
+    background: var(--orange-pop);
+    border-color: var(--orange-pop);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.calendar-day.no-comic {
+    background: #f5f5f5;
+    color: #ccc;
+    cursor: not-allowed;
+    border-color: #e0e0e0;
+}
+
+.calendar-day.selected {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.4);
 }
 
 /* Results count */
@@ -534,7 +601,6 @@ main {
     background: white;
     border: 2px solid var(--deep-red);
     color: var(--deep-red);
-    border-radius: 4px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s;
@@ -596,7 +662,6 @@ main {
     color: var(--parchment);
     padding: 0.5rem 0.75rem;
     font-weight: 600;
-    border-bottom-left-radius: 8px;
 }
 
 .archive-info {
@@ -679,7 +744,6 @@ main {
     background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
     color: var(--parchment);
     text-decoration: none;
-    border-radius: 4px;
     font-weight: 600;
     border: 2px solid var(--dark-brown);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -1035,126 +1099,6 @@ main {
     font-size: 1.2rem;
 }
 
-/* Footer */
-footer {
-    background: linear-gradient(135deg, var(--rich-brown) 0%, var(--dark-brown) 100%);
-    color: var(--parchment);
-    text-align: center;
-    padding: 2rem 1rem;
-    margin-top: 4rem;
-    border-top: 3px solid var(--gold);
-}
-
-footer a {
-    color: var(--gold);
-    text-decoration: underline;
-}
-
-footer a:hover {
-    color: var(--orange-pop);
-}
-
-footer p {
-    margin: 0.5rem 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .tagline {
-        font-size: 0.9rem;
-    }
-
-    /* Stack logo on top for mobile */
-    .logo-nav-item {
-        flex-basis: 100%;
-        margin-right: 0;
-        padding-right: 0;
-        border-right: none;
-        margin-bottom: 0.75rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid rgba(201, 169, 97, 0.4);
-    }
-
-    .logo-link img {
-        max-width: 150px;
-        margin: 0 auto;
-    }
-
-    nav ul {
-        gap: 0;
-    }
-    
-    nav a {
-        padding: 0.5rem 1rem;
-    }
-
-    nav a span {
-        font-size: 0.85rem;
-    }
-
-    nav a::before {
-        font-size: 0.5rem;
-    }
-    
-    .comic-nav {
-        gap: 0.5rem;
-    }
-    
-    .nav-button {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .archive-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 1rem;
-    }
-    
-    main {
-        margin: 1rem 0;
-    }
-    
-    /* Blog responsive */
-    .blog-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .blog-card-image {
-        height: 200px;  /* Slightly smaller on mobile */
-    }
-    
-    .blog-header h1 {
-        font-size: 2rem;
-    }
-    
-    .post-title {
-        font-size: 1.75rem;
-    }
-    
-    .post-content {
-        font-size: 1rem;
-    }
-    
-    .post-navigation {
-        flex-direction: column;
-    }
-    
-    .nav-next {
-        text-align: left;
-    }
-}
-
-@media (max-width: 480px) {
-    .blog-card-title {
-        font-size: 1.25rem;
-    }
-    
-    .blog-card-image {
-        height: 180px;
-    }
-}
-
 /* ============================================
    ABOUT PAGE STYLES
    ============================================ */
@@ -1219,28 +1163,6 @@ footer p {
     font-size: 1.1rem;
 }
 
-/* About Page Mobile Responsive */
-@media (max-width: 768px) {
-    .character-profile {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1rem;
-    }
-    
-    .character-image img {
-        max-width: 300px;
-        margin: 0 auto;
-        display: block;
-    }
-    
-    .about-page h1 {
-        font-size: 2rem;
-    }
-    
-    .character-info h2 {
-        font-size: 1.5rem;
-    }
-}
 /* ============================================
    TUTORIALS STYLES
    ============================================ */
@@ -1752,8 +1674,140 @@ footer p {
     margin: 0 1rem 1rem;
 }
 
-/* Responsive */
+/* Footer */
+footer {
+    background: linear-gradient(135deg, var(--rich-brown) 0%, var(--dark-brown) 100%);
+    color: var(--parchment);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 4rem;
+    border-top: 3px solid var(--gold);
+}
+
+footer a {
+    color: var(--gold);
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: var(--orange-pop);
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
 @media (max-width: 768px) {
+    .tagline {
+        font-size: 0.9rem;
+    }
+
+    /* Stack logo on top for mobile */
+    .logo-nav-item {
+        flex-basis: 100%;
+        margin-right: 0;
+        padding-right: 0;
+        border-right: none;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(201, 169, 97, 0.4);
+    }
+
+    .logo-link img {
+        max-width: 150px;
+        margin: 0 auto;
+    }
+
+    nav ul {
+        gap: 0;
+    }
+    
+    nav a {
+        padding: 0.5rem 1rem;
+    }
+
+    nav a span {
+        font-size: 0.85rem;
+    }
+
+    nav a::before {
+        font-size: 0.5rem;
+    }
+    
+    .comic-nav {
+        gap: 0.5rem;
+    }
+    
+    .nav-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .archive-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+    
+    main {
+        margin: 1rem 0;
+    }
+    
+    /* Blog responsive */
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .blog-card-image {
+        height: 200px;  /* Slightly smaller on mobile */
+    }
+    
+    .blog-header h1 {
+        font-size: 2rem;
+    }
+    
+    .post-title {
+        font-size: 1.75rem;
+    }
+    
+    .post-content {
+        font-size: 1rem;
+    }
+    
+    .post-navigation {
+        flex-direction: column;
+    }
+    
+    .nav-next {
+        text-align: left;
+    }
+
+    /* About Page Mobile */
+    .character-profile {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .character-image img {
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .about-page h1 {
+        font-size: 2rem;
+    }
+    
+    .character-info h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Tutorials Mobile */
     .tutorial-content-grid {
         grid-template-columns: 1fr;
     }
@@ -1772,5 +1826,15 @@ footer p {
 
     .related-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-card-title {
+        font-size: 1.25rem;
+    }
+    
+    .blog-card-image {
+        height: 180px;
     }
 }
