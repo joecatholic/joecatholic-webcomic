@@ -59,7 +59,7 @@ header {
 }
 
 .logo img {
-    max-width: 200px;
+    max-width: 500px;
     height: auto;
     width: 100%;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
@@ -323,6 +323,15 @@ main {
 
 .archive-controls {
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Text Search Row */
+.archive-search-row {
+    display: flex;
+    align-items: center;
 }
 
 #search-box {
@@ -332,8 +341,90 @@ main {
     font-size: 1rem;
     border: 2px solid var(--rich-brown);
     border-radius: 4px;
-    margin-bottom: 1rem;
     background: white;
+    color: var(--text-color);
+}
+
+#search-box:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
+}
+
+/* Calendar Row */
+.archive-calendar-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background: linear-gradient(to right, var(--parchment), var(--warm-tan));
+    border: 2px solid var(--rich-brown);
+    border-radius: 8px;
+}
+
+.archive-calendar-label {
+    font-weight: 600;
+    color: var(--deep-red);
+    white-space: nowrap;
+}
+
+.archive-calendar-selects {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.calendar-select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--rich-brown);
+    border-radius: 4px;
+    background: white;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.calendar-select:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
+}
+
+.calendar-clear-btn {
+    padding: 0.5rem 1rem;
+    background: var(--grey-accent);
+    color: white;
+    border: 2px solid var(--dark-brown);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.calendar-clear-btn:hover {
+    background: var(--rich-brown);
+}
+
+/* Results count */
+.archive-results-count {
+    color: var(--grey-accent);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* No results message */
+.archive-no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--grey-accent);
+    font-size: 1.2rem;
+    border: 2px dashed var(--rich-brown);
+    border-radius: 8px;
+    margin-top: 2rem;
 }
 
 .filter-buttons {
