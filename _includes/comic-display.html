@@ -6,17 +6,17 @@
     </div>
 
     <nav class="comic-nav">
-        <a href="/archive" class="nav-button">Start</a>
+        <a href="/archive" class="nav-button">&#9664;&#9664; Start</a>
         <a href="/archive" class="nav-button">Archive</a>
         {% if comic.url %}
-            <a href="{{ comic.url }}" class="nav-button">View Full Post</a>
+            <a href="{{ comic.url }}" class="nav-button">Latest &#9654;&#9654;</a>
         {% endif %}
     </nav>
 
     <div class="comic-info">
         <h1>{{ comic.title }}</h1>
-        <p class="comic-date">Posted {{ comic.date | date: "%B %d, %Y at %l:%M %p" }}</p>
-        
+        <p class="comic-date">Posted {{ comic.date | date: "%B %d, %Y" }}</p>
+
         {% if comic.tags %}
         <div class="tags">
             <strong>Tags:</strong>
