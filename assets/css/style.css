@@ -1241,3 +1241,536 @@ footer p {
         font-size: 1.5rem;
     }
 }
+/* ============================================
+   TUTORIALS STYLES
+   ============================================ */
+
+/* Tutorials Archive Page */
+.tutorials-page {
+    padding: 2rem;
+}
+
+.tutorials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid var(--gold);
+}
+
+.tutorials-header h1 {
+    font-size: 3rem;
+    color: var(--deep-red);
+    margin-bottom: 0.5rem;
+}
+
+.tutorials-description {
+    font-size: 1.2rem;
+    color: var(--grey-accent);
+}
+
+/* Tutorials Controls */
+.tutorials-controls {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tutorials-filter-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tutorial-filter-btn {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 2px solid var(--deep-red);
+    color: var(--deep-red);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tutorial-filter-btn:hover {
+    background: var(--deep-red);
+    color: var(--parchment);
+}
+
+.tutorial-filter-btn.active {
+    background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
+    color: var(--parchment);
+    border-color: var(--rich-brown);
+}
+
+.tutorials-search-row {
+    display: flex;
+    justify-content: center;
+}
+
+#tutorials-search {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 2px solid var(--rich-brown);
+    background: white;
+    color: var(--text-color);
+}
+
+#tutorials-search:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
+}
+
+.tutorials-results-count {
+    color: var(--grey-accent);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+    text-align: center;
+}
+
+.tutorials-no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--grey-accent);
+    font-size: 1.2rem;
+    border: 2px dashed var(--rich-brown);
+    margin-top: 2rem;
+}
+
+/* Tutorials Grid */
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tutorial-card {
+    background: white;
+    border: 2px solid var(--rich-brown);
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tutorial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border-color: var(--gold);
+}
+
+.tutorial-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Thumbnail */
+.tutorial-card-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: var(--warm-tan);
+    overflow: hidden;
+}
+
+.tutorial-card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.tutorial-card:hover .tutorial-card-thumbnail img {
+    transform: scale(1.05);
+}
+
+.tutorial-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    background: linear-gradient(135deg, var(--parchment), var(--warm-tan));
+}
+
+.tutorial-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Tutorial Type Badges */
+.tutorial-type-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tutorial-type-badge.live-draw {
+    background: linear-gradient(135deg, #DC2626, #991B1B);
+}
+
+.tutorial-type-badge.quick-draw {
+    background: linear-gradient(135deg, #2563EB, #1E40AF);
+}
+
+.duration-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.difficulty-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.difficulty-badge.beginner {
+    background: #10B981;
+    color: white;
+}
+
+.difficulty-badge.intermediate {
+    background: #F59E0B;
+    color: white;
+}
+
+.difficulty-badge.advanced {
+    background: #EF4444;
+    color: white;
+}
+
+/* Card Content */
+.tutorial-card-content {
+    padding: 1.5rem;
+    background: var(--parchment);
+}
+
+.tutorial-card-title {
+    font-size: 1.3rem;
+    color: var(--deep-red);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.tutorial-card-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--grey-accent);
+}
+
+.tutorial-card-series {
+    font-size: 0.9rem;
+    color: var(--deep-red);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.tutorial-card-excerpt {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* ============================================
+   INDIVIDUAL TUTORIAL PAGE
+   ============================================ */
+
+.tutorial-page {
+    padding: 2rem;
+}
+
+/* Tutorial Header */
+.tutorial-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--gold);
+}
+
+.tutorial-meta-badges {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.tutorial-title {
+    font-size: 2.5rem;
+    color: var(--deep-red);
+    margin-bottom: 1rem;
+}
+
+.tutorial-meta {
+    color: var(--grey-accent);
+    font-size: 1rem;
+}
+
+.tutorial-meta span {
+    margin: 0 0.75rem;
+}
+
+.tutorial-series {
+    color: var(--deep-red);
+    font-weight: 600;
+}
+
+/* Video Player */
+.tutorial-video {
+    margin-bottom: 2rem;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    background: var(--dark-brown);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Content Grid */
+.tutorial-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.tutorial-main {
+    background: var(--parchment);
+    padding: 2rem;
+    border: 2px solid var(--rich-brown);
+}
+
+.tutorial-description {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.tutorial-description h2,
+.tutorial-description h3 {
+    color: var(--deep-red);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.tutorial-description ul,
+.tutorial-description ol {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Sidebar Panels */
+.tutorial-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.tutorial-panel {
+    background: white;
+    border: 2px solid var(--rich-brown);
+    padding: 1.5rem;
+    border-left: 4px solid var(--gold);
+}
+
+.tutorial-panel h3 {
+    color: var(--deep-red);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.materials-list,
+.topics-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.materials-list li,
+.topics-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--warm-tan);
+}
+
+.materials-list li:last-child,
+.topics-list li:last-child {
+    border-bottom: none;
+}
+
+.materials-list li::before {
+    content: "🎨 ";
+    margin-right: 0.5rem;
+}
+
+.topics-list li::before {
+    content: "✓ ";
+    margin-right: 0.5rem;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+/* Resources Download */
+.resources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.resource-item {
+    border: 2px solid var(--gold);
+    transition: all 0.3s;
+}
+
+.resource-item:hover {
+    border-color: var(--orange-pop);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resource-download {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(to right, var(--parchment), white);
+}
+
+.resource-name {
+    display: block;
+    font-weight: 700;
+    color: var(--deep-red);
+    margin-bottom: 0.25rem;
+}
+
+.resource-desc {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--grey-accent);
+}
+
+/* Tutorial Footer */
+.tutorial-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--gold);
+}
+
+.tutorial-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Related Tutorials */
+.related-tutorials {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 3px solid var(--gold);
+}
+
+.related-tutorials h2 {
+    color: var(--deep-red);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.related-card {
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid var(--rich-brown);
+    background: white;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.related-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.related-card h3 {
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: var(--deep-red);
+}
+
+.related-card .tutorial-type-badge {
+    margin: 0 1rem 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tutorial-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tutorials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tutorial-title {
+        font-size: 1.75rem;
+    }
+
+    .tutorials-header h1 {
+        font-size: 2rem;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+}
