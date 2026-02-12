@@ -1676,12 +1676,53 @@ main {
 
 /* Footer */
 footer {
-    background: linear-gradient(135deg, var(--rich-brown) 0%, var(--dark-brown) 100%);
+    background: linear-gradient(135deg, var(--deep-red) 0%, var(--rich-brown) 100%);
     color: var(--parchment);
-    text-align: center;
     padding: 2rem 1rem;
     margin-top: 4rem;
     border-top: 3px solid var(--gold);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo {
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo img {
+    max-width: 200px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Placeholder for logo when not present */
+.footer-logo-placeholder {
+    display: inline-block;
+    width: 200px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.3), rgba(217, 151, 6, 0.3));
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 auto 1.5rem;
+}
+
+.footer-divider {
+    width: 60%;
+    height: 1px;
+    background: rgba(201, 169, 97, 0.3);
+    margin: 1.5rem auto;
 }
 
 footer a {
@@ -1695,6 +1736,7 @@ footer a:hover {
 
 footer p {
     margin: 0.5rem 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================
