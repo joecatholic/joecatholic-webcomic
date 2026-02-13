@@ -216,18 +216,24 @@ main {
 /* Comic Display */
 .comic-image-container {
     text-align: center;
-    margin: 2rem 0;
+    margin: 2rem auto;
     background: linear-gradient(to bottom, #fff, var(--warm-tan));
     padding: 1.5rem;
     border: 2px solid var(--rich-brown);
     box-shadow: 
         inset 0 1px 3px rgba(0, 0, 0, 0.1),
         0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .comic-image-container img {
     max-width: 100%;
+    max-height: 90vh;
     height: auto;
+    width: auto;
+    display: block;
+    margin: 0 auto;
     border: 3px solid var(--dark-brown);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -466,173 +472,214 @@ main {
     border-color: var(--gold);
 }
 
-/* Visual Calendar Grid */
-.archive-calendar-grid {
-    padding: 2rem;
-    background: linear-gradient(to bottom, var(--parchment), white);
+/* Archive Accordion */
+.archive-accordion {
+    background: white;
     border: 2px solid var(--rich-brown);
     margin-bottom: 1rem;
 }
 
-.calendar-header {
+.accordion-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(to right, var(--parchment), var(--warm-tan));
+    cursor: pointer;
+    border-bottom: 1px solid var(--rich-brown);
 }
 
-.calendar-month-title {
-    font-size: 1.5rem;
-    color: var(--deep-red);
+.accordion-icon {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.accordion-label {
+    flex: 1;
     font-weight: 700;
-    margin: 0;
+    color: var(--deep-red);
+    font-size: 1.1rem;
 }
 
-.calendar-nav-btn {
+.accordion-toggle {
     background: var(--deep-red);
     color: white;
     border: none;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s;
     font-weight: bold;
 }
 
-.calendar-nav-btn:hover {
+.accordion-toggle:hover {
     background: var(--orange-pop);
 }
 
-.calendar-weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.accordion-content.open {
+    max-height: 2000px;
+    transition: max-height 0.5s ease-in;
+}
+
+/* Year Sections */
+.year-section {
+    border-bottom: 1px solid var(--warm-tan);
+}
+
+.year-section:last-child {
+    border-bottom: none;
+}
+
+.year-header {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--parchment);
+    border: none;
+    text-align: left;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: var(--grey-accent);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-}
-
-.calendar-weekdays span {
-    padding: 0.5rem;
-}
-
-.calendar-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.5rem;
-}
-
-.calendar-day {
-    aspect-ratio: 1;
+    color: var(--deep-red);
+    cursor: pointer;
+    transition: all 0.3s;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: 2px solid var(--rich-brown);
+}
+
+.year-header::before {
+    content: '▶';
+    margin-right: 0.75rem;
+    font-size: 0.8rem;
+    transition: transform 0.3s;
+}
+
+.year-header.active::before {
+    transform: rotate(90deg);
+}
+
+.year-header:hover {
+    background: linear-gradient(to right, var(--deep-red), var(--rich-brown));
+    color: var(--parchment);
+}
+
+/* Months List */
+.months-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
     background: white;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s;
-    font-size: 0.95rem;
-    position: relative;
-    text-decoration: none;
-    color: inherit;
 }
 
-.calendar-day.empty {
+.months-list.open {
+    max-height: 1000px;
+    transition: max-height 0.4s ease-in;
+    padding: 0.5rem 0;
+}
+
+.month-btn {
+    width: 100%;
+    padding: 0.75rem 2.5rem;
+    background: white;
     border: none;
-    background: transparent;
-    cursor: default;
+    border-left: 4px solid transparent;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
 }
 
-.calendar-day.has-comic {
-    background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
-    color: white;
-    border-color: var(--deep-red);
+.month-btn:hover {
+    background: var(--parchment);
+    border-left-color: var(--gold);
+    color: var(--deep-red);
 }
 
-.calendar-day.has-comic:hover {
-    background: var(--orange-pop);
-    border-color: var(--orange-pop);
-    transform: scale(1.05);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+.month-btn.selected {
+    background: linear-gradient(to right, var(--parchment), white);
+    border-left-color: var(--deep-red);
+    color: var(--deep-red);
 }
 
-.calendar-day.no-comic {
-    background: #f5f5f5;
-    color: #ccc;
-    cursor: not-allowed;
-    border-color: #e0e0e0;
+.month-count {
+    color: var(--grey-accent);
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
-.calendar-day.selected {
-    outline: 3px solid var(--gold);
-    outline-offset: 2px;
-    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.4);
-}
-
-/* Calendar Tooltip */
-.calendar-tooltip {
+/* Month Tooltip */
+.month-tooltip {
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 10px;
+    left: 100%;
+    top: 0;
+    margin-left: 15px;
     background: white;
     border: 3px solid var(--gold);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     padding: 0.75rem;
-    min-width: 200px;
-    max-width: 300px;
+    min-width: 250px;
+    max-width: 350px;
     z-index: 1000;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s;
 }
 
-.calendar-day.has-comic:hover .calendar-tooltip {
+.month-btn:hover .month-tooltip {
     opacity: 1;
 }
 
 /* Tooltip arrow */
-.calendar-tooltip::after {
+.month-tooltip::before {
     content: '';
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 100%;
+    top: 20px;
     border: 8px solid transparent;
-    border-top-color: var(--gold);
+    border-right-color: var(--gold);
 }
 
-.calendar-comic-preview {
+.tooltip-preview {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    align-items: center;
     padding: 0.5rem;
     border-bottom: 1px solid var(--warm-tan);
 }
 
-.calendar-comic-preview:last-child {
+.tooltip-preview:last-of-type {
     border-bottom: none;
 }
 
-.calendar-comic-preview img {
-    width: 100%;
-    height: auto;
-    max-height: 150px;
+.tooltip-preview img {
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     border: 2px solid var(--rich-brown);
+    flex-shrink: 0;
 }
 
-.calendar-comic-title {
+.tooltip-info {
+    font-size: 0.85rem;
+    color: var(--text-color);
     font-weight: 600;
-    color: var(--deep-red);
-    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.tooltip-more {
     text-align: center;
+    padding: 0.5rem;
+    color: var(--grey-accent);
+    font-size: 0.85rem;
+    font-style: italic;
 }
 
 /* Results count */
@@ -1801,6 +1848,43 @@ footer a:hover {
 footer p {
     margin: 0.5rem 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.footer-social {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-social a {
+    color: var(--parchment);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background: rgba(201, 169, 97, 0.2);
+    border: 1px solid rgba(201, 169, 97, 0.4);
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.footer-social a:hover {
+    background: var(--gold);
+    color: var(--dark-brown);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.footer-dot {
+    color: var(--gold);
+    opacity: 0.5;
+}
+
+.footer-links {
+    font-size: 0.95rem;
+    opacity: 0.9;
 }
 
 /* ============================================
