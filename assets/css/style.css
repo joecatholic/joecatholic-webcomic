@@ -537,6 +537,9 @@ main {
     font-weight: 600;
     transition: all 0.3s;
     font-size: 0.95rem;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
 }
 
 .calendar-day.empty {
@@ -569,6 +572,67 @@ main {
     outline: 3px solid var(--gold);
     outline-offset: 2px;
     box-shadow: 0 4px 12px rgba(201, 169, 97, 0.4);
+}
+
+/* Calendar Tooltip */
+.calendar-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    background: white;
+    border: 3px solid var(--gold);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 0.75rem;
+    min-width: 200px;
+    max-width: 300px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.calendar-day.has-comic:hover .calendar-tooltip {
+    opacity: 1;
+}
+
+/* Tooltip arrow */
+.calendar-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--gold);
+}
+
+.calendar-comic-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--warm-tan);
+}
+
+.calendar-comic-preview:last-child {
+    border-bottom: none;
+}
+
+.calendar-comic-preview img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover;
+    border: 2px solid var(--rich-brown);
+}
+
+.calendar-comic-title {
+    font-weight: 600;
+    color: var(--deep-red);
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 /* Results count */
