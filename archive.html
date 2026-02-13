@@ -66,7 +66,8 @@ permalink: /archive/
              data-tags="{{ comic.tags | join: ' ' | downcase }}"
              data-title="{{ comic.title | downcase }}"
              data-year="{{ comic.date | date: '%Y' }}"
-             data-month="{{ comic.date | date: '%m' }}">
+             data-month="{{ comic.date | date: '%m' }}"
+             data-day="{{ comic.date | date: '%d' }}">
             <a href="{{ comic.url }}">
                 <div class="archive-thumbnail">
                     <img src="{{ comic.image }}" alt="{{ comic.title }}" loading="lazy">
@@ -107,12 +108,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentDate = new Date();
     let selectedDate = null;
 
-    // Build a map of dates that have comics
-    const comicDates = new Set();
+    // Build a map of dates with comic details
+    const comicsByDate = {};
     archiveItems.forEach(item => {
         const year = item.dataset.year;
         const month = item.dataset.month;
-        comicDates.add(`${year}-${month}`);
+        const day = item.dataset.day;
+        const dateKey = `${year}-${month}-${day}`;
+        
+        if (!comicsByDate[dateKey]) {
+            comicsByDate[dateKey] = [];
+        }
+        
+        comicsByDate[dateKey].push({
+            title: item.dataset.title,
+            url: item.querySelector('a').href,
+            thumbnail: item.querySelector('.archive-thumbnail img')?.src || '',
+            number: item.querySelector('.archive-overlay')?.textContent || ''
+        });
     });
 
     // Episode filter buttons
@@ -149,21 +162,17 @@ document.addEventListener('DOMContentLoaded', function() {
         itemsArray.sort((a, b) => {
             switch(sortValue) {
                 case 'newest':
-                    // Sort by date descending (newest first)
-                    return new Date(b.dataset.year + '-' + b.dataset.month) - 
-                           new Date(a.dataset.year + '-' + a.dataset.month);
+                    return new Date(b.dataset.year + '-' + b.dataset.month + '-' + b.dataset.day) - 
+                           new Date(a.dataset.year + '-' + a.dataset.month + '-' + a.dataset.day);
                 
                 case 'oldest':
-                    // Sort by date ascending (oldest first)
-                    return new Date(a.dataset.year + '-' + a.dataset.month) - 
-                           new Date(b.dataset.year + '-' + b.dataset.month);
+                    return new Date(a.dataset.year + '-' + a.dataset.month + '-' + a.dataset.day) - 
+                           new Date(b.dataset.year + '-' + b.dataset.month + '-' + b.dataset.day);
                 
                 case 'title-az':
-                    // Sort by title A-Z
                     return a.dataset.title.localeCompare(b.dataset.title);
                 
                 case 'title-za':
-                    // Sort by title Z-A
                     return b.dataset.title.localeCompare(a.dataset.title);
                 
                 default:
@@ -171,10 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Re-append items in sorted order
         itemsArray.forEach(item => archiveGrid.appendChild(item));
-        
-        // Reapply filters to maintain visibility
         applyFilters();
     }
 
@@ -182,56 +188,71 @@ document.addEventListener('DOMContentLoaded', function() {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
         
-        // Update title
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
                            'July', 'August', 'September', 'October', 'November', 'December'];
         calendarTitle.textContent = `${monthNames[month]} ${year}`;
 
-        // Get first day of month and number of days
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-        // Clear calendar
         calendarDays.innerHTML = '';
 
-        // Add empty cells for days before month starts
+        // Empty cells before month starts
         for (let i = 0; i < firstDay; i++) {
             const emptyDay = document.createElement('div');
             emptyDay.className = 'calendar-day empty';
             calendarDays.appendChild(emptyDay);
         }
 
-        // Add days of the month
+        // Days of the month
         for (let day = 1; day <= daysInMonth; day++) {
-            const dayEl = document.createElement('button');
-            dayEl.className = 'calendar-day';
-            dayEl.textContent = day;
+            const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const comics = comicsByDate[dateKey] || [];
             
-            const dateKey = `${year}-${String(month + 1).padStart(2, '0')}`;
-            const hasComic = comicDates.has(dateKey);
-            
-            if (hasComic) {
-                dayEl.classList.add('has-comic');
-                dayEl.addEventListener('click', () => selectDate(year, month + 1));
+            if (comics.length > 0) {
+                // Day with comic(s) - create as link
+                const dayLink = document.createElement('a');
+                dayLink.className = 'calendar-day has-comic';
+                dayLink.href = comics[0].url;  // Link to first comic of the day
+                dayLink.textContent = day;
+                
+                // Create tooltip with comic info
+                const tooltip = document.createElement('div');
+                tooltip.className = 'calendar-tooltip';
+                
+                comics.forEach(comic => {
+                    const comicPreview = document.createElement('div');
+                    comicPreview.className = 'calendar-comic-preview';
+                    
+                    if (comic.thumbnail) {
+                        const img = document.createElement('img');
+                        img.src = comic.thumbnail;
+                        img.alt = comic.title;
+                        comicPreview.appendChild(img);
+                    }
+                    
+                    const title = document.createElement('div');
+                    title.className = 'calendar-comic-title';
+                    title.textContent = `#${comic.number} ${comic.title}`;
+                    comicPreview.appendChild(title);
+                    
+                    tooltip.appendChild(comicPreview);
+                });
+                
+                dayLink.appendChild(tooltip);
+                calendarDays.appendChild(dayLink);
             } else {
-                dayEl.classList.add('no-comic');
-                dayEl.disabled = true;
+                // Day without comic
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day no-comic';
+                dayEl.textContent = day;
+                calendarDays.appendChild(dayEl);
             }
-
-            // Highlight selected date
-            if (selectedDate && 
-                selectedDate.year === year && 
-                selectedDate.month === month + 1) {
-                dayEl.classList.add('selected');
-            }
-
-            calendarDays.appendChild(dayEl);
         }
     }
 
     function selectDate(year, month) {
         if (selectedDate && selectedDate.year === year && selectedDate.month === month) {
-            // Deselect if clicking same month again
             selectedDate = null;
         } else {
             selectedDate = { year, month };
@@ -262,7 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (visible) visibleCount++;
         });
 
-        // Update results count
         const total = archiveItems.length;
         if (visibleCount === total) {
             resultsCount.textContent = '';
@@ -270,7 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
             resultsCount.textContent = visibleCount + ' of ' + total + ' comics shown';
         }
 
-        // Show/hide no results message
         noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
