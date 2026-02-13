@@ -1,0 +1,105 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" 
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <description>{{ site.description | xml_escape }}</description>
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <image>
+      <url>{{ site.url }}/assets/images/logo.png</url>
+      <title>{{ site.title | xml_escape }}</title>
+      <link>{{ site.url }}</link>
+    </image>
+    
+    {% assign comics = site.comics | where: "published", true | sort: "date" | reverse %}
+    {% for comic in comics limit:20 %}
+    <item>
+      <title>{{ comic.title | xml_escape }}</title>
+      <link>{{ site.url }}{{ comic.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ comic.url }}</guid>
+      <pubDate>{{ comic.date | date_to_rfc822 }}</pubDate>
+      <dc:creator>{{ site.author.name | xml_escape }}</dc:creator>
+      
+      <description>
+        <![CDATA[
+          <!-- Comic Image (Full Size) -->
+          <img src="{{ site.url }}{{ comic.image }}" 
+               alt="{{ comic.alt | xml_escape }}" 
+               title="{{ comic.title | xml_escape }}"
+               style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
+          
+          <!-- Comic Info -->
+          <p style="text-align: center; margin-top: 1rem;">
+            <strong>{{ comic.title }}</strong><br/>
+            Comic #{{ comic.comic_number }} | {{ comic.episode }}<br/>
+            Posted {{ comic.date | date: "%B %d, %Y" }}
+          </p>
+          
+          {% if comic.alt %}
+          <!-- Alt Text / Hover Text -->
+          <p style="font-style: italic; color: #666; text-align: center;">
+            "{{ comic.alt }}"
+          </p>
+          {% endif %}
+          
+          {% if comic.content != "" %}
+          <!-- Author Commentary -->
+          <div style="margin-top: 1.5rem; padding: 1rem; background: #f5f5f5; border-left: 4px solid #8B2500;">
+            <strong>Fr. Chris's Commentary:</strong><br/>
+            {{ comic.content }}
+          </div>
+          {% endif %}
+          
+          {% if comic.characters %}
+          <!-- Characters -->
+          <p style="margin-top: 1rem;">
+            <strong>Characters:</strong> {{ comic.characters | join: ", " }}
+          </p>
+          {% endif %}
+          
+          {% if comic.tags %}
+          <!-- Tags -->
+          <p>
+            <strong>Tags:</strong> {{ comic.tags | join: ", " }}
+          </p>
+          {% endif %}
+          
+          {% if comic.transcript %}
+          <!-- Transcript (Accessibility) -->
+          <details style="margin-top: 1rem; padding: 1rem; background: #fafafa; border: 1px solid #ddd;">
+            <summary style="cursor: pointer; font-weight: bold;">Transcript</summary>
+            <div style="margin-top: 0.5rem;">
+              {{ comic.transcript | markdownify }}
+            </div>
+          </details>
+          {% endif %}
+          
+          <!-- Read Online Link -->
+          <p style="text-align: center; margin-top: 1.5rem;">
+            <a href="{{ site.url }}{{ comic.url }}" style="display: inline-block; padding: 0.75rem 1.5rem; background: #8B2500; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
+              Read on JoeCatholic.com
+            </a>
+          </p>
+        ]]>
+      </description>
+      
+      <!-- Enclosure for podcast apps / feed readers that support it -->
+      <enclosure url="{{ site.url }}{{ comic.image }}" type="image/jpeg" length="0"/>
+      
+      <!-- Categories -->
+      {% for tag in comic.tags %}
+      <category>{{ tag | xml_escape }}</category>
+      {% endfor %}
+      
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
