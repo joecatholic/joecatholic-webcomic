@@ -2,9 +2,9 @@
 layout: comic
 title: "To the chapel!"
 date: 2025-09-05 12:00:00
-comic_number: 53
+comic_number: 50
 episode: "Episode 1"
-image: /assets/comics/1756782403-JC-E01-050.jpg
+image: /assets/comics/JCE01050.jpg
 alt: ""
 published: true
 tags:
