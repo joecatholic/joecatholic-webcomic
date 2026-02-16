@@ -4,7 +4,7 @@ title: Mildly, Tragically, Generally...Joe
 date: 2025-03-06 01:22:50
 comic_number: 1
 episode: Episode 1
-image: /assets/comics/jc-e01-001.jpg
+image: /assets/comics/JCE01001.jpg
 alt: Wherein we meet Joe Catholic
 characters:
   - Joe Catholic
