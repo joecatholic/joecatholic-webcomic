@@ -2,9 +2,9 @@
 layout: comic
 title: "May I heat up your tea?"
 date: 2025-06-03 12:14:33
-comic_number: 27
+comic_number: 26
 episode: "Episode 1"
-image: /assets/comics/JCE01027.jpg
+image: /assets/comics/JCE01026.jpg
 alt: ""
 published: true
 tags:
