@@ -2,9 +2,9 @@
 layout: comic
 title: "Zwoop through to the other side"
 date: 2025-07-08 12:00:00
-comic_number: 35
+comic_number: 34
 episode: "Episode 1"
-image: /assets/comics/1752007072-JC-E01-034.jpg
+image: /assets/comics/JCE01034.jpg
 alt: ""
 published: true
 tags:
