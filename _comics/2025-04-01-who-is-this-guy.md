@@ -4,7 +4,7 @@ title: "Who is This Guy?"
 date: 2025-04-01 12:00:00
 comic_number: 8
 episode: "Episode 1"
-image: /assets/comics/1743439133-JC-E01-008.jpg
+image: /assets/comics/JCE01008.jpg
 alt: ""
 published: true
 characters:
