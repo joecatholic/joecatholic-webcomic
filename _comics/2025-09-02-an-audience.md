@@ -2,9 +2,9 @@
 layout: comic
 title: "An Audience…."
 date: 2025-09-02 12:00:00
-comic_number: 52
+comic_number: 49
 episode: "Episode 1"
-image: /assets/comics/1756782378-JC-E01-049.jpg
+image: /assets/comics/JCE01049.jpg
 alt: ""
 published: true
 tags:
