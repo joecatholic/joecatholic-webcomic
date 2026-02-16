@@ -2,9 +2,9 @@
 layout: comic
 title: "Hey, Isn’t that…."
 date: 2025-07-04 12:00:00
-comic_number: 34
+comic_number: 33
 episode: "Episode 1"
-image: /assets/comics/1751334971-JC-E01-033a.jpg
+image: /assets/comics/JCE01033.jpg
 alt: ""
 published: true
 tags:
