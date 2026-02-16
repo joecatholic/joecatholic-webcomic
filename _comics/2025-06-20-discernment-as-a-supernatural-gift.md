@@ -2,9 +2,9 @@
 layout: comic
 title: "Discernment as a Supernatural gift."
 date: 2025-06-20 12:00:00
-comic_number: 32
+comic_number: 31
 episode: "Episode 1"
-image: /assets/comics/1750109842-JC-E01-031.jpg
+image: /assets/comics/JCE01031.jpg
 alt: ""
 published: true
 tags:
