@@ -2,9 +2,9 @@
 layout: comic
 title: "The Key to it all."
 date: 2025-07-01 12:00:00
-comic_number: 33
+comic_number: 32
 episode: "Episode 1"
-image: /assets/comics/1751334579-JC-E01-032.jpg
+image: /assets/comics/JCE01032.jpg
 alt: ""
 published: true
 tags:
