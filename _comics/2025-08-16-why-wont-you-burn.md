@@ -6,9 +6,10 @@ comic_number: 44
 episode: Episode 1
 image: /assets/comics/JCE01044.jpg
 alt: Why won't it burn?
-tags:
-  - Joe Catholic
+tags: []
 characters:
-  - Joe Catholic
+  - GiovannideLuca
+  - EliseMoreau
+  - Fr.GabrielNardFST
 published: true
 ---
