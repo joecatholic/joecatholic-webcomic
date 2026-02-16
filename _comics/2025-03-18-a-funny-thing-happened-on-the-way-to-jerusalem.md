@@ -4,7 +4,7 @@ title: "A Funny Thing Happened on The Way to Jerusalem."
 date: 2025-03-18 12:00:00
 comic_number: 4
 episode: "Episode 1"
-image: /assets/comics/1741912667-JC-E01-004.jpg
+image: /assets/comics/JCE01004.jpg
 alt: ""
 published: true
 tags:
