@@ -1,10 +1,9 @@
 backend:
-  name: github
-  repo: joecatholic/joecatholic-webcomic
+  name: git-gateway
   branch: main
 
-media_folder: "assets/images"
-public_folder: "/assets/images"
+media_folder: "assets/comics"
+public_folder: "/assets/comics"
 
 collections:
   - name: "comics"
@@ -12,99 +11,53 @@ collections:
     folder: "_comics"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
-      preview: false
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "comic"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Comic Number", name: "comic_number", widget: "number"}
+      - {label: "Comic Number", name: "comic_number", widget: "number", value_type: "int"}
       - {label: "Episode", name: "episode", widget: "string", default: "Episode 1"}
-      - {label: "Comic Image", name: "image", widget: "image", media_folder: "/assets/comics", public_folder: "/assets/comics"}
-      - {label: "Alt Text", name: "alt", widget: "string"}
-      - {label: "Transcript", name: "transcript", widget: "text", required: false}
-      - {label: "Commentary", name: "body", widget: "markdown", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Characters", name: "characters", widget: "list", required: false}
+      - {label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false}
+      - {label: "Comic Image", name: "image", widget: "image"}
+      - {label: "Alt Text / Hover Text", name: "alt", widget: "string", required: false}
       - {label: "Published", name: "published", widget: "boolean", default: true}
-  
-  - name: "blog"
-    label: "Blog"
+      
+      # FIXED: Characters field - allows spaces in names
+      - label: "Characters"
+        name: "characters"
+        widget: "list"
+        required: false
+        summary: "{{fields.character}}"
+        field: 
+          label: "Character"
+          name: "character"
+          widget: "string"
+      
+      # Tags field - same fix
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        summary: "{{fields.tag}}"
+        field:
+          label: "Tag"
+          name: "tag"
+          widget: "string"
+      
+      - {label: "Commentary", name: "body", widget: "markdown", required: false}
+      - {label: "Transcript", name: "transcript", widget: "text", required: false}
+
+  - name: "posts"
+    label: "Blog Posts"
     folder: "_posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
-      preview: false
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Author", name: "author", widget: "string", default: "Fr. Christopher J. Decker"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Author", name: "author", widget: "string", default: "Fr. Chris Decker"}
       - {label: "Featured Image", name: "image", widget: "image", required: false}
-      - {label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "Brief summary that appears in blog listings"}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false}
       - {label: "Categories", name: "categories", widget: "list", required: false}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Published", name: "published", widget: "boolean", default: true}
-
-  - name: "tutorials"
-    label: "🎨 Tutorials"
-    label_singular: "Tutorial"
-    folder: "_tutorials"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
-      preview: false
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "tutorial"}
-      - {label: "Title", name: "title", widget: "string", hint: "e.g., 'Drawing Hands - The Basics'"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false, hint: "Tutorial cover image for listings"}
-      
-      - label: "Tutorial Type"
-        name: "tutorial_type"
-        widget: "select"
-        options: ["Live Draw", "Quick Draw"]
-        hint: "Live Draw = full livestream recording, Quick Draw = short focused lesson"
-      
-      - label: "Difficulty Level"
-        name: "difficulty"
-        widget: "select"
-        options: ["Beginner", "Intermediate", "Advanced"]
-        default: "Beginner"
-      
-      - {label: "Duration", name: "duration", widget: "string", required: false, hint: "e.g., '45 min' or '1hr 30min'"}
-      
-      - {label: "YouTube Video ID", name: "youtube_id", widget: "string", required: false, hint: "Just the ID from the URL, e.g., 'dQw4w9WgXcQ'"}
-      
-      - label: "Series"
-        name: "series"
-        widget: "string"
-        required: false
-        hint: "Group related tutorials, e.g., 'Character Design Basics' or 'Joe Catholic Episode 2'"
-      
-      - label: "Materials Needed"
-        name: "materials"
-        widget: "list"
-        required: false
-        hint: "Tools/materials needed for this tutorial"
-      
-      - label: "Topics Covered"
-        name: "topics"
-        widget: "list"
-        required: false
-        hint: "Main topics/techniques covered"
-      
-      - label: "Downloadable Resources"
-        name: "resources"
-        widget: "list"
-        required: false
-        fields:
-          - {label: "Resource Name", name: "name", widget: "string"}
-          - {label: "Resource File", name: "file", widget: "file", media_folder: "/assets/tutorial-resources", public_folder: "/assets/tutorial-resources"}
-          - {label: "Description", name: "description", widget: "string", required: false}
-      
-      - {label: "Description/Notes", name: "body", widget: "markdown", hint: "Tutorial description, notes, timestamps, etc."}
-      
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Published", name: "published", widget: "boolean", default: true}
