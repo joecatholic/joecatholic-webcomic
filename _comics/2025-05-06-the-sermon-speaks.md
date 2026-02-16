@@ -4,7 +4,7 @@ title: "The Sermon Speaks"
 date: 2025-05-06 12:00:00
 comic_number: 18
 episode: "Episode 1"
-image: /assets/comics/1746530882-JC-E01-018.jpg
+image: /assets/comics/JCE01018.jpg
 alt: ""
 published: true
 tags:
