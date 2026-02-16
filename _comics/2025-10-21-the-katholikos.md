@@ -2,9 +2,9 @@
 layout: comic
 title: "The Katholikos."
 date: 2025-10-21 12:00:00
-comic_number: 66
+comic_number: 63
 episode: "Episode 1"
-image: /assets/comics/1759197088-JC-E01-063.jpg
+image: /assets/comics/JCE01063.jpg
 alt: ""
 published: true
 tags:
