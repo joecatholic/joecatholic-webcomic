@@ -4,7 +4,7 @@ title: "John Carter is underrated. "
 date: 2025-03-14 12:00:00
 comic_number: 3
 episode: "Episode 1"
-image: /assets/comics/1741386206-JC-E01-003.jpg
+image: /assets/comics/JCE01003.jpg
 alt: "John Carter travelled to Mars."
 published: true
 tags:
