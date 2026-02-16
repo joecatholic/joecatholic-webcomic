@@ -4,7 +4,7 @@ title: Present Day Yawnfest
 date: 2025-03-11 12:00:00
 comic_number: 2
 episode: Episode 1
-image: /assets/comics/jc-e01-002.jpg
+image: /assets/comics/JCE01002.jpg
 alt: Wherein Joe sleeps.
 tags:
   - library
