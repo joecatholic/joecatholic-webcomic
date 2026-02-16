@@ -4,7 +4,7 @@ title: "The Agility Ability"
 date: 2025-05-20 12:00:00
 comic_number: 22
 episode: "Episode 1"
-image: /assets/comics/1747697200-JC-E01-022.jpg
+image: /assets/comics/JCE01022.jpg
 alt: ""
 published: true
 tags:
