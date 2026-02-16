@@ -2,9 +2,9 @@
 layout: comic
 title: "Not Exactly Who You Think."
 date: 2025-10-10 12:00:00
-comic_number: 63
+comic_number: 60
 episode: "Episode 1"
-image: /assets/comics/1759196453-JC-E01-060.jpg
+image: /assets/comics/JCE01060.jpg
 alt: ""
 published: true
 tags:
