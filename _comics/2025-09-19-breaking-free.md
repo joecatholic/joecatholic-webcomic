@@ -2,9 +2,9 @@
 layout: comic
 title: "Breaking Free"
 date: 2025-09-19 12:00:00
-comic_number: 57
+comic_number: 54
 episode: "Episode 1"
-image: /assets/comics/1758046660-JC-E01-054.jpg
+image: /assets/comics/JCE01054.jpg
 alt: ""
 published: true
 tags:
