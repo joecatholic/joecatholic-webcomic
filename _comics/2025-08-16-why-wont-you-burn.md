@@ -8,8 +8,8 @@ image: /assets/comics/JCE01044.jpg
 alt: Why won't it burn?
 tags: []
 characters:
-  - GiovannideLuca
-  - EliseMoreau
-  - Fr.GabrielNardFST
+  - Giovanni deLuca
+  - Elise Moreau
+  - Fr. Gabriel Nard FST
 published: true
 ---
