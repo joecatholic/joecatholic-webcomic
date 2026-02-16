@@ -4,7 +4,7 @@ title: "Like with a Temple, and Everything?"
 date: 2025-03-25 12:00:00
 comic_number: 6
 episode: "Episode 1"
-image: /assets/comics/1742616897-JC-E01-006.jpg
+image: /assets/comics/JCE01006.jpg
 alt: ""
 published: true
 ---
