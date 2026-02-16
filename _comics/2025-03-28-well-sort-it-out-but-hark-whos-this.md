@@ -4,7 +4,7 @@ title: "We’ll sort it out. But, Hark! Who’s this?!"
 date: 2025-03-28 12:00:00
 comic_number: 7
 episode: "Episode 1"
-image: /assets/comics/1742796093-JC-E01-007.jpg
+image: /assets/comics/JCE01007.jpg
 alt: ""
 published: true
 tags:
