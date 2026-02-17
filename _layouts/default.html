@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }} - Comics Feed" href="{{ '/feed.xml' | absolute_url }}">
     <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
     <header>
@@ -38,9 +39,9 @@
         <div class="footer-container">
             <!-- Logo placeholder - replace with actual Collarmark logo when ready -->
             <div class="footer-logo">
-              
-                <img src="/assets/images/Collarmark-Logo.png" alt="Collarmark Productions">
-              
+                <!-- Uncomment when you have the logo:
+                <img src="/assets/images/collarmark-logo.png" alt="Collarmark Productions">
+                -->
                 <div class="footer-logo-placeholder">Collarmark</div>
             </div>
             
@@ -67,5 +68,16 @@
 
     {% include cookie-consent.html %}
 
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
 </body>
 </html>
