@@ -705,6 +705,7 @@ main {
     gap: 0.5rem;
     flex-wrap: wrap;
     margin-top: 1rem;
+    align-items: center;
 }
 
 .filter-btn {
@@ -725,6 +726,18 @@ main {
 .filter-btn.active {
     background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
     color: var(--parchment);
+}
+
+.reset-btn {
+    border-color: var(--grey-accent) !important;
+    color: var(--grey-accent) !important;
+    background: white !important;
+    margin-left: auto;
+}
+
+.reset-btn:hover {
+    background: var(--grey-accent) !important;
+    color: white !important;
 }
 
 .archive-grid {
@@ -1244,9 +1257,10 @@ main {
 
 .post-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
+    margin: -1rem -1rem 2rem -1rem;
+    padding: 2.5rem 2rem;
     border-bottom: 2px solid var(--gold);
+    background: linear-gradient(135deg, var(--deep-red) 0%, var(--rich-brown) 100%);
 }
 
 .post-title {
@@ -1254,10 +1268,13 @@ main {
     color: var(--parchment);
     margin-bottom: 1rem;
     line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .post-meta {
-    color: var(--grey-accent);
+    color: var(--warm-tan);
+    font-size: 0.95rem;
+}
     font-size: 1rem;
 }
 
@@ -1483,15 +1500,47 @@ main {
 
 .tutorials-header {
     text-align: center;
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
+    margin: -1rem -1rem 3rem -1rem;
+    padding: 2.5rem 2rem;
     border-bottom: 3px solid var(--gold);
+    background: linear-gradient(135deg, var(--deep-red) 0%, var(--rich-brown) 100%);
 }
 
 .tutorials-header h1 {
     font-size: 3rem;
     color: var(--parchment);
     margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tutorials-logo {
+    display: block;
+    max-width: 320px;
+    max-height: 120px;
+    margin: 0 auto 0.75rem auto;
+    object-fit: contain;
+}
+
+.tutorials-logo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 120px;
+    margin: 0 auto 0.75rem auto;
+    border: 2px dashed var(--gold);
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.tutorials-logo-placeholder span {
+    font-size: 1.8rem;
 }
 
 .tutorials-description {
@@ -2214,10 +2263,7 @@ footer p {
     }
 
     .tutorials-header h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-        color: var(--parchment);
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        font-size: 2rem;
     }
 
     .related-grid {
