@@ -1,0 +1,229 @@
+<!-- ============================================
+     GDPR Cookie Consent Banner
+     Joe Catholic Webcomic
+     ============================================ -->
+
+<div id="cookie-banner" class="cookie-banner" style="display:none;" role="dialog" aria-label="Cookie Preferences" aria-modal="true">
+    <div class="cookie-banner-inner">
+
+        <div class="cookie-banner-header">
+            <h2 class="cookie-banner-title">🍪 Cookie Preferences</h2>
+            <p class="cookie-banner-intro">
+                This site uses cookies and browser storage to improve your experience. 
+                Because visitors may come from the EU and other regions with privacy laws, 
+                we want to be transparent about what we use and give you control.
+            </p>
+        </div>
+
+        <div class="cookie-categories">
+
+            <!-- Essential -->
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <div class="cookie-category-info">
+                        <strong>Essential</strong>
+                        <span class="cookie-category-desc">Required for the site to function. Cannot be disabled.</span>
+                    </div>
+                    <div class="cookie-toggle-wrapper">
+                        <input type="checkbox" id="cookie-essential" checked disabled class="cookie-toggle">
+                        <label for="cookie-essential" class="cookie-toggle-label cookie-toggle-locked">Always On</label>
+                    </div>
+                </div>
+                <p class="cookie-detail">Your dismissed cookie banner preference (so we don't ask every visit). No personal data collected.</p>
+            </div>
+
+            <!-- Functional -->
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <div class="cookie-category-info">
+                        <strong>Functional</strong>
+                        <span class="cookie-category-desc">Enhances your reading experience.</span>
+                    </div>
+                    <div class="cookie-toggle-wrapper">
+                        <input type="checkbox" id="cookie-functional" class="cookie-toggle" checked>
+                        <label for="cookie-functional" class="cookie-toggle-label"></label>
+                    </div>
+                </div>
+                <p class="cookie-detail">Comic bookmarks and reading progress. Stored locally in your browser — never sent to any server.</p>
+            </div>
+
+            <!-- YouTube -->
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <div class="cookie-category-info">
+                        <strong>YouTube Videos</strong>
+                        <span class="cookie-category-desc">Required to play embedded tutorial videos.</span>
+                    </div>
+                    <div class="cookie-toggle-wrapper">
+                        <input type="checkbox" id="cookie-youtube" class="cookie-toggle">
+                        <label for="cookie-youtube" class="cookie-toggle-label"></label>
+                    </div>
+                </div>
+                <p class="cookie-detail">YouTube (google.com) may set cookies when videos play. We use YouTube's privacy-enhanced mode to minimize tracking until you click play.</p>
+            </div>
+
+            <!-- Analytics -->
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <div class="cookie-category-info">
+                        <strong>Analytics</strong>
+                        <span class="cookie-category-desc">Helps us understand how people use the site.</span>
+                    </div>
+                    <div class="cookie-toggle-wrapper">
+                        <input type="checkbox" id="cookie-analytics" class="cookie-toggle">
+                        <label for="cookie-analytics" class="cookie-toggle-label"></label>
+                    </div>
+                </div>
+                <p class="cookie-detail">Currently not in use. If we add analytics in the future, we will update this notice and ask for your consent again.</p>
+            </div>
+
+        </div>
+
+        <div class="cookie-banner-actions">
+            <button id="cookie-reject-all" class="cookie-btn cookie-btn-secondary">Reject Non-Essential</button>
+            <button id="cookie-save" class="cookie-btn cookie-btn-secondary">Save My Preferences</button>
+            <button id="cookie-accept-all" class="cookie-btn cookie-btn-primary">Accept All</button>
+        </div>
+
+        <p class="cookie-legal">
+            This site is operated by Fr. Chris Decker / Collarmark Productions. 
+            We do not sell personal data. 
+            <a href="/privacy" class="cookie-link">Privacy Policy</a>
+        </p>
+
+    </div>
+</div>
+
+<!-- Cookie Preferences Link (always visible in footer) -->
+<button id="cookie-prefs-btn" class="cookie-prefs-btn" onclick="showCookieBanner()" aria-label="Cookie Preferences">🍪 Cookie Preferences</button>
+
+<script>
+(function() {
+    const CONSENT_KEY = 'jc_cookie_consent';
+    const CONSENT_VERSION = '1.0';
+
+    // ── Helpers ──────────────────────────────────────────────
+    function getConsent() {
+        try {
+            const raw = localStorage.getItem(CONSENT_KEY);
+            return raw ? JSON.parse(raw) : null;
+        } catch(e) { return null; }
+    }
+
+    function saveConsent(prefs) {
+        try {
+            localStorage.setItem(CONSENT_KEY, JSON.stringify({
+                version: CONSENT_VERSION,
+                timestamp: new Date().toISOString(),
+                ...prefs
+            }));
+        } catch(e) {}
+    }
+
+    function hideBanner() {
+        const banner = document.getElementById('cookie-banner');
+        if (banner) banner.style.display = 'none';
+    }
+
+    window.showCookieBanner = function() {
+        const banner = document.getElementById('cookie-banner');
+        if (!banner) return;
+        // Load saved prefs into toggles
+        const consent = getConsent();
+        if (consent) {
+            setToggle('cookie-functional', consent.functional !== false);
+            setToggle('cookie-youtube',    consent.youtube    === true);
+            setToggle('cookie-analytics',  consent.analytics  === true);
+        }
+        banner.style.display = 'flex';
+        banner.focus();
+    };
+
+    function setToggle(id, val) {
+        const el = document.getElementById(id);
+        if (el) el.checked = val;
+    }
+
+    function readToggles() {
+        return {
+            essential:  true,
+            functional: document.getElementById('cookie-functional')?.checked ?? true,
+            youtube:    document.getElementById('cookie-youtube')?.checked    ?? false,
+            analytics:  document.getElementById('cookie-analytics')?.checked  ?? false,
+        };
+    }
+
+    // ── Apply consent to page behaviour ──────────────────────
+    window.applyConsent = function(prefs) {
+        // Functional: bookmarks
+        if (!prefs.functional) {
+            // Remove any stored bookmarks if user revokes
+            try { localStorage.removeItem('jc_bookmark'); } catch(e) {}
+        }
+
+        // YouTube: show/hide video gates
+        document.querySelectorAll('.video-consent-gate').forEach(gate => {
+            const id = gate.id.replace('video-gate-', '');
+            if (prefs.youtube) {
+                loadYouTubeVideo(id);
+            } else {
+                gate.style.display = 'flex';
+                const iframe = document.getElementById('yt-' + id);
+                if (iframe) { iframe.src = ''; iframe.style.display = 'none'; }
+            }
+        });
+    };
+
+    // Load a YouTube video (called on consent or on "Play Video" click)
+    window.loadYouTubeVideo = function(id) {
+        const gate   = document.getElementById('video-gate-' + id);
+        const iframe = document.getElementById('yt-' + id);
+        if (!iframe) return;
+
+        // If they clicked Play without YouTube consent, save that choice
+        const consent = getConsent() || {};
+        consent.youtube = true;
+        saveConsent(consent);
+
+        iframe.src = iframe.dataset.src;
+        iframe.style.display = 'block';
+        if (gate) gate.style.display = 'none';
+    };
+
+    // ── Button handlers ───────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+        const banner = document.getElementById('cookie-banner');
+
+        document.getElementById('cookie-accept-all')?.addEventListener('click', function() {
+            const prefs = { essential: true, functional: true, youtube: true, analytics: true };
+            saveConsent(prefs);
+            applyConsent(prefs);
+            hideBanner();
+        });
+
+        document.getElementById('cookie-reject-all')?.addEventListener('click', function() {
+            const prefs = { essential: true, functional: false, youtube: false, analytics: false };
+            saveConsent(prefs);
+            applyConsent(prefs);
+            hideBanner();
+        });
+
+        document.getElementById('cookie-save')?.addEventListener('click', function() {
+            const prefs = readToggles();
+            saveConsent(prefs);
+            applyConsent(prefs);
+            hideBanner();
+        });
+
+        // ── Show banner or apply saved prefs on load ──────────
+        const consent = getConsent();
+        if (!consent || consent.version !== CONSENT_VERSION) {
+            // First visit or version changed — show banner
+            setTimeout(() => { if (banner) banner.style.display = 'flex'; }, 800);
+        } else {
+            // Returning visitor — silently apply their saved prefs
+            applyConsent(consent);
+        }
+    });
+})();
+</script>
