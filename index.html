@@ -4,14 +4,79 @@ title: Joe Catholic - The Latest Comic
 ---
 
 {% assign latest_comic = site.comics | where: "published", true | sort: "date" | last %}
+{% assign latest_tutorial = site.tutorials | where: "published", true | sort: "date" | last %}
 
 {% if latest_comic %}
 <div class="homepage">
+
+    <!-- ===================== -->
+    <!-- COMIC - ABOVE THE FOLD -->
+    <!-- ===================== -->
+    <div class="episode-status">
+        <p><strong>Episode One is Complete &mdash; Episode Two is in Development!</strong></p>
+    </div>
+
     {% include comic-display.html comic=latest_comic %}
 
     <div class="home-nav">
-        <a href="{{ latest_comic.url }}" class="read-more-btn">View Full Post</a>
+        <a href="{{ latest_comic.url }}" class="read-more-btn">Full Post &amp; Commentary</a>
     </div>
+
+    <!-- ===================== -->
+    <!-- LATEST TUTORIAL CARD  -->
+    <!-- ===================== -->
+    {% if latest_tutorial %}
+    <div class="home-tutorial-section">
+        <h2 class="home-section-title">
+            <span class="home-section-label">From Joe Catholic Draws</span>
+            Latest Tutorial
+        </h2>
+
+        <a href="{{ latest_tutorial.url }}" class="home-tutorial-card">
+
+            <div class="home-tutorial-thumb">
+                {% if latest_tutorial.thumbnail %}
+                    <img src="{{ latest_tutorial.thumbnail }}" alt="{{ latest_tutorial.title }}">
+                {% else %}
+                    <div class="home-tutorial-placeholder">🎨</div>
+                {% endif %}
+
+                <div class="home-tutorial-badges">
+                    <span class="tutorial-type-badge {% if latest_tutorial.tutorial_type == 'Live Draw' %}live-draw{% else %}quick-draw{% endif %}">
+                        {{ latest_tutorial.tutorial_type }}
+                    </span>
+                    {% if latest_tutorial.difficulty %}
+                    <span class="difficulty-badge {{ latest_tutorial.difficulty | downcase }}">
+                        {{ latest_tutorial.difficulty }}
+                    </span>
+                    {% endif %}
+                </div>
+
+                {% if latest_tutorial.duration %}
+                <div class="home-tutorial-duration">{{ latest_tutorial.duration }}</div>
+                {% endif %}
+            </div>
+
+            <div class="home-tutorial-info">
+                <p class="home-tutorial-date">{{ latest_tutorial.date | date: "%B %d, %Y" }}</p>
+                <h3 class="home-tutorial-title">{{ latest_tutorial.title }}</h3>
+                {% if latest_tutorial.series %}
+                <p class="home-tutorial-series">{{ latest_tutorial.series }}</p>
+                {% endif %}
+                {% if latest_tutorial.excerpt %}
+                <p class="home-tutorial-excerpt">{{ latest_tutorial.excerpt }}</p>
+                {% endif %}
+                <span class="home-tutorial-cta">Watch Tutorial →</span>
+            </div>
+
+        </a>
+
+        <div class="home-tutorial-more">
+            <a href="/tutorials" class="read-more-btn">All Tutorials</a>
+        </div>
+    </div>
+    {% endif %}
+
 </div>
 {% else %}
 <div class="homepage">
