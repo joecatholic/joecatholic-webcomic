@@ -4,7 +4,7 @@ title: Drawing The Chalice
 date: 2026-01-01T12:00:00.000-06:00
 thumbnail: /assets/images/jc-quick-draw-along-chalice-item.jpg
 tutorial_type: Quick Draw
-difficulty: Beginner
+difficulty: Intermediate
 duration: 10m 48s
 youtube_id: 7TraKMdG-cA
 materials:
