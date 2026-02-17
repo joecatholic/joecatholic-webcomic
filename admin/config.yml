@@ -61,3 +61,33 @@ collections:
       - {label: "Categories", name: "categories", widget: "list", required: false}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "tutorials"
+    label: "Tutorials"
+    folder: "_tutorials"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "tutorial"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
+      - {label: "Tutorial Type", name: "tutorial_type", widget: "select", options: ["Live Draw", "Quick Draw"]}
+      - {label: "YouTube Video ID", name: "youtube_id", widget: "string"}
+      - {label: "Thumbnail Image", name: "thumbnail", widget: "image"}
+      - {label: "Difficulty", name: "difficulty", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", hint: "e.g., 45 min", required: false}
+      - {label: "Series", name: "series", widget: "string", required: false}
+      - {label: "Materials Needed", name: "materials", widget: "list", required: false}
+      - {label: "Topics Covered", name: "topics", widget: "list", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Download Resources"
+        name: "resources"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Resource Name", name: "name", widget: "string"}
+          - {label: "File", name: "file", widget: "file"}
+          - {label: "Description", name: "description", widget: "string", required: false}
