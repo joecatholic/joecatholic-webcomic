@@ -22,7 +22,6 @@
                     <li><a href="/" data-label="Start Here"><span>Home</span></a></li>
                     <li><a href="/about" data-label="The Characters"><span>About</span></a></li>
                     <li><a href="/archive" data-label="All Strips"><span>Archive</span></a></li>
-                    <li><a href="/tutorials" data-label="Learn to Draw"><span>Tutorials</span></a></li>
                     <li><a href="/blog" data-label="Dispatches"><span>Blog</span></a></li>
                     <li><a href="{{ site.social.store }}" data-label="Get the Book"><span>Books &amp; Merch!</span></a></li>
                 </ul>
@@ -36,8 +35,12 @@
 
     <footer>
         <div class="footer-container">
+            <!-- Logo placeholder - replace with actual Collarmark logo when ready -->
             <div class="footer-logo">
-                <img src="/assets/images/collarmark-logo.png" alt="Collarmark Productions"
+                <!-- Uncomment when you have the logo:
+                <img src="/assets/images/collarmark-logo.png" alt="Collarmark Productions">
+                -->
+                <div class="footer-logo-placeholder">Collarmark</div>
             </div>
             
             <div class="footer-divider"></div>
@@ -55,9 +58,13 @@
             <p class="footer-links">
                 <a href="/feed.xml">📡 RSS Feed</a> | 
                 <a href="/about">About</a> | 
-                <a href="/archive">Archive</a>
+                <a href="/archive">Archive</a> |
+                <a href="/privacy">Privacy Policy</a>
             </p>
         </div>
     </footer>
+
+    {% include cookie-consent.html %}
+
 </body>
 </html>

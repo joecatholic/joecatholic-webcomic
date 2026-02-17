@@ -27,6 +27,10 @@ layout: default
   {% assign latest_comic = sorted_comics | last %}
 {% endif %}
 
+<div class="episode-status">
+    <p>Episode One is Complete &mdash; Episode Two is in Development!</p>
+</div>
+
 <article class="comic-post">
     <div class="comic-image-container">
         <img src="{{ page.image }}" alt="{{ page.alt }}" title="{{ page.title }}">
@@ -57,7 +61,10 @@ layout: default
     </nav>
 
     <div class="comic-info">
-        <h1>{{ page.title }}</h1>
+        <div class="comic-info-header">
+            <h1>{{ page.title }}</h1>
+            {% include bookmark.html comic=page %}
+        </div>
         <p class="comic-date">Posted {{ page.date | date: "%B %d, %Y" }}</p>
         
         {% if page.tags %}
@@ -96,7 +103,7 @@ layout: default
 </article>
 
 <aside class="promo-box">
-    <img src="/assets/images/joe-catholic-book-cover.jpg" alt="Joe Catholic Episode 1 Book Cover">
+    <img src="/assets/images/book-cover.jpg" alt="Joe Catholic Episode 1 Book Cover">
     <h3>Own the Full Adventure!</h3>
     <p>Episode 1 now available in print&mdash;68 strips of faith, mystery, and action.</p>
     <a href="https://a.co/d/izKhy1Z" class="buy-button">Buy on Amazon</a>

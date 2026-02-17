@@ -29,12 +29,28 @@ layout: default
     <!-- Video Player -->
     {% if page.youtube_id %}
     <div class="tutorial-video">
-        <div class="video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/{{ page.youtube_id }}" 
+        <div class="video-container" id="video-container-{{ page.youtube_id }}">
+            <!-- Shown before consent -->
+            <div class="video-consent-gate" id="video-gate-{{ page.youtube_id }}">
+                {% if page.thumbnail %}
+                <img src="{{ page.thumbnail }}" alt="{{ page.title }}" class="video-gate-thumb">
+                {% endif %}
+                <div class="video-gate-overlay">
+                    <p class="video-gate-msg">▶ This video is hosted on YouTube.</p>
+                    <p class="video-gate-sub">Playing it will load YouTube cookies. Your current cookie preferences block this.</p>
+                    <button class="video-gate-btn" onclick="loadYouTubeVideo('{{ page.youtube_id }}')">Play Video</button>
+                    <a href="https://www.youtube.com/watch?v={{ page.youtube_id }}" target="_blank" rel="noopener" class="video-gate-link">Watch on YouTube instead →</a>
+                </div>
+            </div>
+            <!-- Loaded after consent -->
+            <iframe
+                id="yt-{{ page.youtube_id }}"
+                style="display:none; position:absolute; top:0; left:0; width:100%; height:100%;"
+                src=""
+                data-src="https://www.youtube-nocookie.com/embed/{{ page.youtube_id }}?rel=0"
                 title="{{ page.title }}"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
             </iframe>
         </div>
