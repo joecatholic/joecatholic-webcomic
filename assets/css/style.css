@@ -10,7 +10,7 @@
     --dark-brown: #3E2723;         /* Very dark brown for text */
     --gold: #C9A961;               /* Muted gold accent */
     --orange-pop: #D97706;         /* Orange accent */
-    --grey-accent: #6B7280;        /* Subtle grey */
+    --grey-accent: #8C95A0;        /* Subtle grey */
     
     /* Semantic mappings */
     --primary-color: var(--deep-red);
@@ -917,7 +917,7 @@ main {
     position: relative;
     background: var(--warm-tan);
     overflow: hidden;
-    min-height: 200px;
+    aspect-ratio: 16 / 9;
 }
 
 .home-tutorial-thumb img {
@@ -935,7 +935,6 @@ main {
 .home-tutorial-placeholder {
     width: 100%;
     height: 100%;
-    min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1024,8 +1023,8 @@ main {
     }
 
     .home-tutorial-thumb {
-        min-height: 200px;
-        max-height: 200px;
+        aspect-ratio: 16 / 9;
+        max-height: none;
     }
 }
 
@@ -1457,7 +1456,7 @@ main {
 
 .tutorials-header h1 {
     font-size: 3rem;
-    color: var(--parchment);
+    color: var(--deep-red);
     margin-bottom: 0.5rem;
 }
 
@@ -1575,7 +1574,7 @@ main {
 .tutorial-card-thumbnail {
     position: relative;
     width: 100%;
-    height: 200px;
+    aspect-ratio: 16 / 9;
     background: var(--warm-tan);
     overflow: hidden;
 }
@@ -1737,7 +1736,7 @@ main {
 }
 
 .tutorial-meta {
-    color: var(--grey-accent);
+    color: var(--warm-tan);
     font-size: 1rem;
 }
 
