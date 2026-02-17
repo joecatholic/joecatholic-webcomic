@@ -32,33 +32,35 @@ layout: default
 </div>
 
 <article class="comic-post">
-    <div class="comic-image-container">
-        <img src="{{ page.image }}" alt="{{ page.alt }}" title="{{ page.title }}">
-    </div>
+    <div class="comic-reader-box">
+        <div class="comic-image-container">
+            <img src="{{ page.image }}" alt="{{ page.alt }}" title="{{ page.title }}">
+        </div>
 
-    <nav class="comic-nav">
-        {% if first_comic %}
-            <a href="{{ first_comic.url }}" class="nav-button {% unless prev_comic %}disabled{% endunless %}">&#9664;&#9664; Start</a>
-        {% endif %}
-        
-        {% if prev_comic %}
-            <a href="{{ prev_comic.url }}" class="nav-button">&#9664; Back</a>
-        {% else %}
-            <span class="nav-button disabled">&#9664; Back</span>
-        {% endif %}
-        
-        <a href="/archive" class="nav-button">Archive</a>
-        
-        {% if next_comic %}
-            <a href="{{ next_comic.url }}" class="nav-button">Next &#9654;</a>
-        {% else %}
-            <span class="nav-button disabled">Next &#9654;</span>
-        {% endif %}
-        
-        {% if latest_comic and page.url != latest_comic.url %}
-            <a href="{{ latest_comic.url }}" class="nav-button">Latest &#9654;&#9654;</a>
-        {% endif %}
-    </nav>
+        <nav class="comic-nav">
+            {% if first_comic %}
+                <a href="{{ first_comic.url }}" class="nav-button {% unless prev_comic %}disabled{% endunless %}">&#9664;&#9664; Start</a>
+            {% endif %}
+            
+            {% if prev_comic %}
+                <a href="{{ prev_comic.url }}" class="nav-button">&#9664; Back</a>
+            {% else %}
+                <span class="nav-button disabled">&#9664; Back</span>
+            {% endif %}
+            
+            <a href="/archive" class="nav-button">Archive</a>
+            
+            {% if next_comic %}
+                <a href="{{ next_comic.url }}" class="nav-button">Next &#9654;</a>
+            {% else %}
+                <span class="nav-button disabled">Next &#9654;</span>
+            {% endif %}
+            
+            {% if latest_comic and page.url != latest_comic.url %}
+                <a href="{{ latest_comic.url }}" class="nav-button">Latest &#9654;&#9654;</a>
+            {% endif %}
+        </nav>
+    </div>
 
     <div class="comic-info">
         <div class="comic-info-header">
