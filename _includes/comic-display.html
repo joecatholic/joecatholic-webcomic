@@ -1,17 +1,19 @@
 {% assign comic = include.comic %}
 
 <article class="comic-display">
-    <div class="comic-image-container">
-        <img src="{{ comic.image }}" alt="{{ comic.alt }}" title="{{ comic.title }}">
-    </div>
+    <div class="comic-reader-box">
+        <div class="comic-image-container">
+            <img src="{{ comic.image }}" alt="{{ comic.alt }}" title="{{ comic.title }}">
+        </div>
 
-    <nav class="comic-nav">
-        <a href="/archive" class="nav-button">&#9664;&#9664; Start</a>
-        <a href="/archive" class="nav-button">Archive</a>
-        {% if comic.url %}
-            <a href="{{ comic.url }}" class="nav-button">Latest &#9654;&#9654;</a>
-        {% endif %}
-    </nav>
+        <nav class="comic-nav">
+            <a href="/archive" class="nav-button">&#9664;&#9664; Start</a>
+            <a href="/archive" class="nav-button">Archive</a>
+            {% if comic.url %}
+                <a href="{{ comic.url }}" class="nav-button">Latest &#9654;&#9654;</a>
+            {% endif %}
+        </nav>
+    </div>
 
     <div class="comic-info">
         <h1>{{ comic.title }}</h1>
