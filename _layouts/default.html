@@ -64,6 +64,78 @@
         </div>
     </footer>
 
+    <script>
+    // ── Bookmark System ──────────────────────────────────────
+    (function() {
+        const BOOKMARK_KEY = 'jc_bookmark';
+        const CONSENT_KEY  = 'jc_cookie_consent';
+
+        function canBookmark() {
+            try {
+                const raw = localStorage.getItem(CONSENT_KEY);
+                if (!raw) return false;
+                const consent = JSON.parse(raw);
+                return consent.functional !== false;
+            } catch(e) { return false; }
+        }
+
+        function getBookmark() {
+            try {
+                const raw = localStorage.getItem(BOOKMARK_KEY);
+                return raw ? JSON.parse(raw) : null;
+            } catch(e) { return null; }
+        }
+
+        window.toggleBookmark = function(btn) {
+            if (!canBookmark()) {
+                if (window.showCookieBanner) showCookieBanner();
+                return;
+            }
+
+            const url    = btn.dataset.url;
+            const title  = btn.dataset.title;
+            const number = btn.dataset.number;
+            const existing = getBookmark();
+
+            if (existing && existing.url === url) {
+                try { localStorage.removeItem(BOOKMARK_KEY); } catch(e) {}
+                updateBtn(btn, false);
+            } else {
+                try {
+                    localStorage.setItem(BOOKMARK_KEY, JSON.stringify({
+                        url, title, number,
+                        savedAt: new Date().toISOString()
+                    }));
+                } catch(e) {}
+                updateBtn(btn, true);
+            }
+        };
+
+        function updateBtn(btn, isBookmarked) {
+            const icon  = btn.querySelector('.bookmark-icon');
+            const label = btn.querySelector('.bookmark-label');
+            if (isBookmarked) {
+                btn.classList.add('bookmarked');
+                if (icon)  icon.textContent  = '🔖';
+                if (label) label.textContent = 'Bookmarked!';
+            } else {
+                btn.classList.remove('bookmarked');
+                if (icon)  icon.textContent  = '🔖';
+                if (label) label.textContent = 'Bookmark';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('bookmark-btn');
+            if (!btn) return;
+            const bookmark = getBookmark();
+            if (bookmark && bookmark.url === btn.dataset.url) {
+                updateBtn(btn, true);
+            }
+        });
+    })();
+    </script>
+
     {% include cookie-consent.html %}
 
 </body>
