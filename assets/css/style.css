@@ -918,9 +918,15 @@ main {
     position: relative;
     background: var(--dark-brown);
     overflow: hidden;
-    aspect-ratio: 16 / 9;
+    width: 280px;
     flex-shrink: 0;
-    align-self: stretch;
+}
+
+/* Force 16:9 using padding trick - more reliable than aspect-ratio in grid */
+.home-tutorial-thumb::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
 }
 
 .home-tutorial-thumb img {
@@ -940,6 +946,9 @@ main {
 }
 
 .home-tutorial-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -949,6 +958,7 @@ main {
     background: linear-gradient(135deg, var(--parchment), var(--warm-tan));
 }
 
+/* Type badge - top left */
 .home-tutorial-badges {
     position: absolute;
     top: 0.75rem;
@@ -957,8 +967,10 @@ main {
     flex-direction: column;
     gap: 0.4rem;
     align-items: flex-start;
+    z-index: 2;
 }
 
+/* Duration - bottom right */
 .home-tutorial-duration {
     position: absolute;
     bottom: 0.75rem;
@@ -968,6 +980,16 @@ main {
     padding: 0.3rem 0.6rem;
     font-size: 0.8rem;
     font-weight: 600;
+    z-index: 2;
+}
+
+/* Difficulty badge - bottom left */
+.home-tutorial-thumb .difficulty-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    margin: 0;
 }
 
 .home-tutorial-info {
@@ -1030,20 +1052,8 @@ main {
     }
 
     .home-tutorial-thumb {
-        position: relative;
         width: 100%;
-        aspect-ratio: 16 / 9;
-        max-height: none;
-        overflow: hidden;
-    }
-
-    .home-tutorial-thumb img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        /* padding trick still works - gives correct 16:9 at any width */
     }
 
     .home-tutorial-info {
