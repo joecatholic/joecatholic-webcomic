@@ -867,6 +867,168 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* =====================
+   HOMEPAGE TUTORIAL CARD
+   ===================== */
+.home-tutorial-section {
+    margin: 2rem 0 1rem;
+    padding-top: 2rem;
+    border-top: 3px solid var(--gold);
+}
+
+.home-section-title {
+    font-size: 1.8rem;
+    color: var(--deep-red);
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.home-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.9;
+}
+
+.home-tutorial-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid var(--rich-brown);
+    background: white;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.home-tutorial-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border-color: var(--gold);
+}
+
+.home-tutorial-thumb {
+    position: relative;
+    background: var(--warm-tan);
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.home-tutorial-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.home-tutorial-card:hover .home-tutorial-thumb img {
+    transform: scale(1.05);
+}
+
+.home-tutorial-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    background: linear-gradient(135deg, var(--parchment), var(--warm-tan));
+}
+
+.home-tutorial-badges {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-start;
+}
+
+.home-tutorial-duration {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.home-tutorial-info {
+    padding: 1.5rem;
+    background: var(--parchment);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.home-tutorial-date {
+    font-size: 0.85rem;
+    color: var(--grey-accent);
+    margin: 0;
+}
+
+.home-tutorial-title {
+    font-size: 1.4rem;
+    color: var(--deep-red);
+    line-height: 1.3;
+    margin: 0;
+}
+
+.home-tutorial-series {
+    font-size: 0.9rem;
+    color: var(--rich-brown);
+    font-weight: 600;
+    margin: 0;
+}
+
+.home-tutorial-excerpt {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.home-tutorial-cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 700;
+    color: var(--deep-red);
+    transition: color 0.3s;
+}
+
+.home-tutorial-card:hover .home-tutorial-cta {
+    color: var(--orange-pop);
+}
+
+.home-tutorial-more {
+    text-align: center;
+    margin-top: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .home-tutorial-card {
+        grid-template-columns: 1fr;
+    }
+
+    .home-tutorial-thumb {
+        min-height: 200px;
+        max-height: 200px;
+    }
+}
+
 /* ============================================
    BLOG STYLES - Adventure Theme
    ============================================ */
@@ -1056,7 +1218,7 @@ main {
 
 .post-title {
     font-size: 2.5rem;
-    color: var(--parchment);
+    color: var(--deep-red);
     margin-bottom: 1rem;
     line-height: 1.2;
 }
@@ -1551,8 +1713,11 @@ main {
 .tutorial-header {
     text-align: center;
     margin-bottom: 2rem;
+    padding: 2rem;
     padding-bottom: 2rem;
     border-bottom: 2px solid var(--gold);
+    background: linear-gradient(135deg, var(--deep-red) 0%, var(--rich-brown) 100%);
+    margin: -1rem -1rem 2rem -1rem;
 }
 
 .tutorial-meta-badges {
@@ -1566,8 +1731,9 @@ main {
 
 .tutorial-title {
     font-size: 2.5rem;
-    color: var(--deep-red);
+    color: var(--parchment);
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .tutorial-meta {
