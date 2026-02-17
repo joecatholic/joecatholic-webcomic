@@ -1,36 +1,36 @@
 ---
 layout: tutorial
-title: "Drawing Dynamic Poses - The Basics"
+title: Drawing Dynamic Poses - The Basics
 date: 2026-02-11 14:00:00
 thumbnail: /assets/images/tutorials/dynamic-poses-thumb.jpg
-tutorial_type: "Live Draw"
-difficulty: "Beginner"
-duration: "1hr 15min"
-youtube_id: "dQw4w9WgXcQ"
-series: "Character Design Fundamentals"
+tutorial_type: Live Draw
+difficulty: Beginner
+duration: 1hr 15min
+youtube_id: dQw4w9WgXcQ
+series: Character Design Fundamentals
 materials:
-  - "Pencil or digital stylus"
-  - "Paper or drawing tablet"
-  - "Reference images (provided below)"
-  - "Patience!"
+  - Pencil or digital stylus
+  - Paper or drawing tablet
+  - Reference images (provided below)
+  - Patience!
 topics:
-  - "Understanding gesture lines"
-  - "Breaking down the torso and hips"
-  - "Finding the center of gravity"
-  - "Common pose mistakes to avoid"
+  - Understanding gesture lines
+  - Breaking down the torso and hips
+  - Finding the center of gravity
+  - Common pose mistakes to avoid
 resources:
-  - name: "Dynamic Poses Reference Pack"
+  - name: Dynamic Poses Reference Pack
     file: /assets/tutorial-resources/dynamic-poses-refs.pdf
-    description: "20 reference images for practice"
-  - name: "Procreate Gesture Brush"
+    description: 20 reference images for practice
+  - name: Procreate Gesture Brush
     file: /assets/tutorial-resources/gesture-brush.brush
-    description: "Custom brush for quick gesture sketches"
+    description: Custom brush for quick gesture sketches
 tags:
   - poses
   - gesture
   - figure drawing
   - anatomy
-published: true
+published: false
 ---
 
 ## Overview
