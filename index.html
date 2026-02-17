@@ -41,16 +41,19 @@ title: Joe Catholic - The Latest Comic
                     <div class="home-tutorial-placeholder">🎨</div>
                 {% endif %}
 
+                <!-- Type badge - top left -->
                 <div class="home-tutorial-badges">
                     <span class="tutorial-type-badge {% if latest_tutorial.tutorial_type == 'Live Draw' %}live-draw{% else %}quick-draw{% endif %}">
                         {{ latest_tutorial.tutorial_type }}
                     </span>
-                    {% if latest_tutorial.difficulty %}
-                    <span class="difficulty-badge {{ latest_tutorial.difficulty | downcase }}">
-                        {{ latest_tutorial.difficulty }}
-                    </span>
-                    {% endif %}
                 </div>
+
+                <!-- Difficulty badge - bottom left -->
+                {% if latest_tutorial.difficulty %}
+                <span class="difficulty-badge {{ latest_tutorial.difficulty | downcase }}">
+                    {{ latest_tutorial.difficulty }}
+                </span>
+                {% endif %}
 
                 {% if latest_tutorial.duration %}
                 <div class="home-tutorial-duration">{{ latest_tutorial.duration }}</div>
