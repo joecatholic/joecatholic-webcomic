@@ -62,7 +62,7 @@ permalink: /archive/
              data-day="{{ comic.date | date: '%d' }}">
             <a href="{{ comic.url }}">
                 <div class="archive-thumbnail">
-                    <img src="{{ comic.image }}" alt="{{ comic.title }}" loading="lazy">
+                    <img src="/assets/thumbnails/{{ comic.image | split: '/' | last }}" alt="{{ comic.title }}" loading="lazy">
                     <div class="archive-overlay">
                         <span>#{{ comic.comic_number }}</span>
                     </div>
