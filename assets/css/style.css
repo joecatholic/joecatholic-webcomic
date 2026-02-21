@@ -1066,16 +1066,19 @@ main {
 @media (max-width: 640px) {
     .home-tutorial-card {
         grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .home-tutorial-thumb {
         width: 100%;
+        max-width: 100%;
         /* padding trick still works - gives correct 16:9 at any width */
     }
 
     .home-tutorial-info {
         width: 100%;
         box-sizing: border-box;
+        padding: 1rem;
     }
 }
 
@@ -2268,6 +2271,18 @@ footer p {
 
     .tutorials-header h1 {
         font-size: 2rem;
+    }
+
+    .tutorials-logo-placeholder {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        min-height: 100px;
+    }
+
+    .tutorials-logo {
+        max-width: 100%;
+        width: auto;
     }
 
     .related-grid {
