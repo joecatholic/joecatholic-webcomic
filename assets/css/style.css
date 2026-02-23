@@ -2615,3 +2615,64 @@ footer p {
     color: var(--grey-accent);
     padding: 1rem 0;
 }
+
+/* ============================================
+   EPISODE SELECTOR (Uncomment when Episode 2 starts)
+   ============================================ */
+/*
+.episode-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.episode-label {
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
+    color: var(--parchment);
+    font-weight: 700;
+    cursor: default;
+    pointer-events: none;
+}
+
+.episode-dropdown {
+    padding: 0.75rem 1rem;
+    background: white;
+    border: 2px solid var(--deep-red);
+    color: var(--dark-brown);
+    font-weight: 700;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.episode-dropdown:hover {
+    background: var(--parchment);
+    border-color: var(--gold);
+}
+
+.episode-dropdown:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    .episode-selector {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.25rem;
+    }
+
+    .episode-label {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .episode-dropdown {
+        width: 100%;
+    }
+}
+*/
