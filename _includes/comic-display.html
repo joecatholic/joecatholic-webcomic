@@ -7,7 +7,11 @@
         </div>
 
         <nav class="comic-nav">
-            <a href="/archive" class="nav-button">&#9664;&#9664; Start</a>
+            {% if include.first_comic %}
+                <a href="{{ include.first_comic.url }}" class="nav-button">&#9664;&#9664; Start</a>
+            {% else %}
+                <a href="/archive" class="nav-button">&#9664;&#9664; Start</a>
+            {% endif %}
             <a href="/archive" class="nav-button">Archive</a>
             {% if comic.url %}
                 <a href="{{ comic.url }}" class="nav-button">Latest &#9654;&#9654;</a>
