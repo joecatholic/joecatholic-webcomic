@@ -4,6 +4,7 @@ title: Joe Catholic - The Latest Comic
 ---
 
 {% assign latest_comic = site.comics | where: "published", true | sort: "date" | last %}
+{% assign first_comic = site.comics | where: "published", true | sort: "date" | first %}
 {% assign latest_tutorial = site.tutorials | where: "published", true | sort: "date" | last %}
 
 {% if latest_comic %}
@@ -16,7 +17,7 @@ title: Joe Catholic - The Latest Comic
         <p><strong>Episode One is Complete &mdash; Episode Two is in Development!</strong></p>
     </div>
 
-    {% include comic-display.html comic=latest_comic %}
+    {% include comic-display.html comic=latest_comic first_comic=first_comic %}
 
     <div class="home-nav">
         <a href="{{ latest_comic.url }}" class="read-more-btn">Full Post &amp; Commentary</a>
