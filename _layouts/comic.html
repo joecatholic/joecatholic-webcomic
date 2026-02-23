@@ -49,6 +49,24 @@ layout: default
             {% endif %}
             
             <a href="/archive" class="nav-button">Archive</a>
+
+            <!-- EPISODE SELECTOR - Uncomment when Episode 2 begins -->
+            <!--
+            <div class="episode-selector">
+                <label for="episode-select" class="nav-button episode-label">Episode:</label>
+                <select id="episode-select" class="episode-dropdown" onchange="window.location.href=this.value">
+                    <option value="">Jump to Episode...</option>
+                    {% assign episodes = site.comics | where: "published", true | group_by: "episode" | sort: "name" %}
+                    {% for episode in episodes %}
+                        {% assign episode_comics = episode.items | sort: "date" %}
+                        {% assign first_in_episode = episode_comics | first %}
+                        <option value="{{ first_in_episode.url }}" {% if page.episode == episode.name %}selected{% endif %}>
+                            {{ episode.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            -->
             
             {% if next_comic %}
                 <a href="{{ next_comic.url }}" class="nav-button">Next &#9654;</a>
