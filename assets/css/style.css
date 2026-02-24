@@ -2615,6 +2615,448 @@ footer p {
     color: var(--grey-accent);
     padding: 1rem 0;
 }
+/* ============================================
+   JOE CATHOLIC EXPLORES STYLES
+   ============================================ */
+
+/* Explores Index Page */
+.explores-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.explores-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--deep-red) 0%, var(--rich-brown) 100%);
+    border: 3px solid var(--gold);
+    margin: -1rem -1rem 3rem -1rem;
+}
+
+.explores-header h1 {
+    font-size: 3rem;
+    color: var(--parchment);
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.explores-description {
+    font-size: 1.1rem;
+    color: var(--parchment);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Search & Filter Controls */
+.explores-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.explores-search-box {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid var(--warm-tan);
+    background: white;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.explores-search-box:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.explores-tags-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-filter {
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 2px solid var(--warm-tan);
+    color: var(--dark-brown);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.tag-filter:hover {
+    background: var(--parchment);
+    border-color: var(--gold);
+}
+
+.tag-filter.active {
+    background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
+    border-color: var(--gold);
+    color: var(--parchment);
+}
+
+.explores-results-count {
+    text-align: center;
+    color: var(--grey-accent);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Explores Grid - 3 columns for letter-size cards */
+.explores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.explores-card {
+    background: white;
+    border: 2px solid var(--warm-tan);
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.explores-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--gold);
+}
+
+.explores-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.explores-thumbnail {
+    position: relative;
+    background: var(--parchment);
+    padding-top: 129.4%; /* 8.5:11 ratio for letter size */
+    overflow: hidden;
+}
+
+.explores-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.explores-card:hover .explores-thumbnail img {
+    transform: scale(1.05);
+}
+
+.explores-thumbnail-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--parchment), var(--warm-tan));
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    opacity: 0.5;
+}
+
+.placeholder-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    text-align: center;
+    padding: 0 1rem;
+}
+
+/* Format Badge (PDF, Interactive, etc.) */
+.format-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--deep-red);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 2;
+}
+
+.format-badge.interactive {
+    background: var(--orange-pop);
+}
+
+.format-badge.coloring-page {
+    background: var(--gold);
+    color: var(--dark-brown);
+}
+
+.format-badge.activity-sheet {
+    background: var(--rich-brown);
+}
+
+/* Orientation Badge */
+.orientation-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.explores-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.explores-card-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark-brown);
+    line-height: 1.3;
+}
+
+.explores-card-excerpt {
+    font-size: 0.9rem;
+    color: var(--grey-accent);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.explores-card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+}
+
+.explores-date {
+    color: var(--grey-accent);
+}
+
+.explores-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.tag-pill {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background: var(--parchment);
+    border: 1px solid var(--warm-tan);
+    font-size: 0.75rem;
+    color: var(--dark-brown);
+    font-weight: 600;
+}
+
+.explores-card-cta {
+    color: var(--deep-red);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.explores-no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--grey-accent);
+}
+
+/* Individual Explore Page */
+.explore-post {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.explore-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid var(--gold);
+}
+
+.explore-header h1 {
+    font-size: 2.5rem;
+    color: var(--dark-brown);
+    margin-bottom: 0.5rem;
+}
+
+.explore-date {
+    color: var(--grey-accent);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.explore-badges {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.explore-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.explore-preview {
+    position: relative;
+    background: var(--parchment);
+    border: 3px solid var(--warm-tan);
+    padding: 1rem;
+}
+
+.explore-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.explore-preview-placeholder {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--parchment), var(--warm-tan));
+}
+
+.explore-preview-placeholder span {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.explore-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.explore-excerpt {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--grey-accent);
+}
+
+.explore-download {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-align: center;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 2px solid;
+}
+
+.download-btn.primary {
+    background: linear-gradient(135deg, var(--deep-red), var(--rich-brown));
+    color: white;
+    border-color: var(--gold);
+}
+
+.download-btn.primary:hover {
+    background: linear-gradient(135deg, var(--rich-brown), var(--deep-red));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn.secondary {
+    background: white;
+    color: var(--deep-red);
+    border-color: var(--deep-red);
+}
+
+.download-btn.secondary:hover {
+    background: var(--parchment);
+    border-color: var(--gold);
+}
+
+.explore-usage {
+    background: var(--parchment);
+    padding: 1.5rem;
+    border-left: 4px solid var(--gold);
+}
+
+.explore-usage h3 {
+    margin-top: 0;
+    color: var(--dark-brown);
+}
+
+.explore-usage ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.explore-usage li {
+    padding: 0.5rem 0;
+    color: var(--grey-accent);
+}
+
+.explore-nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 2rem 0;
+    border-top: 2px solid var(--warm-tan);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .explores-header h1 {
+        font-size: 2rem;
+    }
+
+    .explores-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .explore-content {
+        grid-template-columns: 1fr;
+    }
+
+    .explore-header h1 {
+        font-size: 2rem;
+    }
+}
 
 /* ============================================
    EPISODE SELECTOR (Uncomment when Episode 2 starts)
