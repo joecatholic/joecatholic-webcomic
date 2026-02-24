@@ -91,3 +91,33 @@ collections:
           - {label: "Resource Name", name: "name", widget: "string"}
           - {label: "File", name: "file", widget: "file"}
           - {label: "Description", name: "description", widget: "string", required: false}
+
+  - name: "explores"
+    label: "Joe Catholic Explores"
+    folder: "_explores"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    media_folder: "assets/images/explores"
+    public_folder: "/assets/images/explores"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "explore"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
+      - label: "Format"
+        name: "format"
+        widget: "select"
+        options: ["PDF", "Interactive", "Coloring Page", "Activity Sheet"]
+        default: "PDF"
+      - label: "Orientation"
+        name: "orientation"
+        widget: "select"
+        options: ["Portrait (8.5x11)", "Landscape (11x8.5)"]
+        default: "Portrait (8.5x11)"
+      - {label: "Thumbnail Preview", name: "thumbnail", widget: "image"}
+      - {label: "PDF File", name: "pdf_file", widget: "file"}
+      - {label: "Interactive File (optional)", name: "interactive_file", widget: "file", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false}
+      - {label: "Keywords (for search)", name: "keywords", widget: "list", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Description", name: "body", widget: "markdown"}
