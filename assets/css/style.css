@@ -2615,7 +2615,6 @@ footer p {
     color: var(--grey-accent);
     padding: 1rem 0;
 }
-/* ============================================
    JOE CATHOLIC EXPLORES STYLES
    ============================================ */
 
@@ -2925,6 +2924,13 @@ footer p {
     flex-wrap: wrap;
 }
 
+/* Override absolute positioning for badges in single posts */
+.explore-post .format-badge,
+.explore-post .orientation-badge {
+    position: static;
+    display: inline-block;
+}
+
 .explore-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -3057,7 +3063,6 @@ footer p {
         font-size: 2rem;
     }
 }
-
 /* ============================================
    EPISODE SELECTOR (Uncomment when Episode 2 starts)
    ============================================ */
