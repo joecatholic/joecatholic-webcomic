@@ -1,0 +1,110 @@
+---
+layout: default
+---
+
+{% assign all_explores = site.explores | where: "published", true | sort: "date" %}
+{% assign explore_index = 0 %}
+{% for item in all_explores %}
+    {% if item.url == page.url %}
+        {% assign explore_index = forloop.index0 %}
+    {% endif %}
+{% endfor %}
+
+{% if explore_index > 0 %}
+    {% assign prev_explore = all_explores[explore_index | minus: 1] %}
+{% endif %}
+
+{% if explore_index < all_explores.size | minus: 1 %}
+    {% assign next_explore = all_explores[explore_index | plus: 1] %}
+{% endif %}
+
+<article class="explore-post">
+    <!-- Header with title and metadata -->
+    <header class="explore-header">
+        <h1>{{ page.title }}</h1>
+        <p class="explore-date">Published {{ page.date | date: "%B %d, %Y" }}</p>
+        
+        <div class="explore-badges">
+            {% if page.format %}
+            <span class="format-badge {{ page.format | slugify }}">{{ page.format }}</span>
+            {% endif %}
+            {% if page.orientation %}
+            <span class="orientation-badge">{{ page.orientation }}</span>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Main content area with preview and download -->
+    <div class="explore-content">
+        <div class="explore-preview">
+            {% if page.thumbnail %}
+                <img src="{{ page.thumbnail }}" alt="{{ page.title }}">
+            {% else %}
+                <div class="explore-preview-placeholder">
+                    <span>📄</span>
+                    <p>Preview not available</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="explore-details">
+            {% if page.excerpt %}
+            <p class="explore-excerpt">{{ page.excerpt }}</p>
+            {% endif %}
+
+            {{ content }}
+
+            <!-- Download Section -->
+            {% if page.pdf_file %}
+            <div class="explore-download">
+                <a href="{{ page.pdf_file }}" class="download-btn primary" download>
+                    📥 Download PDF
+                </a>
+                {% if page.interactive_file %}
+                <a href="{{ page.interactive_file }}" class="download-btn secondary" download>
+                    🎨 Download Interactive Version
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- Usage Info -->
+            <div class="explore-usage">
+                <h3>How to Use:</h3>
+                <ul>
+                    <li>✅ Free for personal and parish use</li>
+                    <li>✅ Print for bulletins and handouts</li>
+                    <li>✅ Share in religious education classes</li>
+                    <li>❌ No commercial redistribution</li>
+                </ul>
+            </div>
+
+            <!-- Tags -->
+            {% if page.tags %}
+            <div class="explore-tags">
+                <strong>Topics:</strong>
+                {% for tag in page.tags %}
+                    <a href="/explores?tag={{ tag | slugify }}" class="tag-pill">{{ tag }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="explore-nav">
+        {% if prev_explore %}
+            <a href="{{ prev_explore.url }}" class="nav-button">◀ Previous</a>
+        {% else %}
+            <span class="nav-button disabled">◀ Previous</span>
+        {% endif %}
+        
+        <a href="/explores" class="nav-button">All Explores</a>
+        
+        {% if next_explore %}
+            <a href="{{ next_explore.url }}" class="nav-button">Next ▶</a>
+        {% else %}
+            <span class="nav-button disabled">Next ▶</span>
+        {% endif %}
+    </nav>
+</article>
