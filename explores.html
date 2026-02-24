@@ -1,0 +1,156 @@
+---
+layout: default
+title: Joe Catholic Explores
+---
+
+<div class="explores-page">
+    <div class="explores-header">
+        <h1>Joe Catholic Explores</h1>
+        <p class="explores-description">
+            One-page catechetical comics perfect for bulletins, classrooms, and religious education. 
+            Download, print, and share the faith!
+        </p>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="explores-controls">
+        <input 
+            type="text" 
+            id="explores-search" 
+            class="explores-search-box" 
+            placeholder="Search by title or keyword..."
+            aria-label="Search explores">
+        
+        <div class="explores-tags-filter" id="tags-filter">
+            <button class="tag-filter active" data-tag="all">All Topics</button>
+        </div>
+    </div>
+
+    <!-- Results Count -->
+    <p class="explores-results-count" id="results-count"></p>
+
+    <!-- Explores Grid -->
+    <div class="explores-grid">
+        {% assign sorted_explores = site.explores | where: "published", true | sort: "date" | reverse %}
+        {% for explore in sorted_explores %}
+        <article class="explores-card"
+                 data-title="{{ explore.title | downcase }}"
+                 data-tags="{{ explore.tags | join: ' ' | downcase }}"
+                 data-keywords="{{ explore.keywords | join: ' ' | downcase }}">
+            
+            <a href="{{ explore.url }}" class="explores-card-link">
+                <div class="explores-thumbnail">
+                    {% if explore.thumbnail %}
+                        <img src="{{ explore.thumbnail }}" alt="{{ explore.title }}">
+                    {% else %}
+                        <div class="explores-thumbnail-placeholder">
+                            <span class="placeholder-icon">📄</span>
+                            <span class="placeholder-text">{{ explore.title }}</span>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Format Badge (PDF, Interactive, Coloring, etc.) -->
+                    {% if explore.format %}
+                    <span class="format-badge {{ explore.format | slugify }}">{{ explore.format }}</span>
+                    {% endif %}
+                    
+                    <!-- Orientation Badge -->
+                    {% if explore.orientation %}
+                    <span class="orientation-badge">{{ explore.orientation }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="explores-card-content">
+                    <h2 class="explores-card-title">{{ explore.title }}</h2>
+                    
+                    {% if explore.excerpt %}
+                    <p class="explores-card-excerpt">{{ explore.excerpt }}</p>
+                    {% endif %}
+
+                    <div class="explores-card-meta">
+                        <span class="explores-date">{{ explore.date | date: "%B %d, %Y" }}</span>
+                        {% if explore.tags %}
+                        <span class="explores-tags">
+                            {% for tag in explore.tags limit:3 %}
+                                <span class="tag-pill">{{ tag }}</span>
+                            {% endfor %}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <span class="explores-card-cta">Download & Print →</span>
+                </div>
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- No Results Message -->
+    <div class="explores-no-results" id="no-results" style="display:none;">
+        <p>No explores found. Try a different search or filter.</p>
+    </div>
+
+</div>
+
+<script>
+// ── Explores Search & Filter ──────────────────────────────────
+(function() {
+    const searchBox = document.getElementById('explores-search');
+    const cards = document.querySelectorAll('.explores-card');
+    const resultsCount = document.getElementById('results-count');
+    const noResults = document.getElementById('no-results');
+    const tagsFilter = document.getElementById('tags-filter');
+    
+    let activeTag = 'all';
+
+    // Build tag filter buttons from available tags
+    const allTags = new Set();
+    cards.forEach(card => {
+        const tags = card.dataset.tags.split(' ').filter(Boolean);
+        tags.forEach(tag => allTags.add(tag));
+    });
+
+    const sortedTags = Array.from(allTags).sort();
+    sortedTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'tag-filter';
+        btn.dataset.tag = tag;
+        btn.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+        btn.onclick = () => filterByTag(tag);
+        tagsFilter.appendChild(btn);
+    });
+
+    function filterByTag(tag) {
+        activeTag = tag;
+        document.querySelectorAll('.tag-filter').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.tag === tag);
+        });
+        filterCards();
+    }
+
+    function filterCards() {
+        const searchTerm = searchBox.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const title = card.dataset.title || '';
+            const tags = card.dataset.tags || '';
+            const keywords = card.dataset.keywords || '';
+            const searchable = `${title} ${tags} ${keywords}`;
+
+            const matchesSearch = !searchTerm || searchable.includes(searchTerm);
+            const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+            
+            const isVisible = matchesSearch && matchesTag;
+            card.style.display = isVisible ? 'block' : 'none';
+            if (isVisible) visibleCount++;
+        });
+
+        resultsCount.textContent = `Showing ${visibleCount} of ${cards.length} explores`;
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    searchBox.addEventListener('input', filterCards);
+    filterCards(); // Initial count
+})();
+</script>
