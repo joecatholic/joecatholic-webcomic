@@ -33,6 +33,9 @@ collections:
   tutorials:
     output: true
     permalink: /tutorials/:title/
+  explores:
+    output: true
+    permalink: /explore/:slug/
 
 # Defaults
 defaults:
@@ -46,6 +49,11 @@ defaults:
       type: "tutorials"
     values:
       layout: "tutorial"
+  - scope:
+      path: ""
+      type: "explores"
+    values:
+      layout: "explore"
 
 # Plugins
 plugins:
@@ -62,4 +70,4 @@ exclude:
   - vendor
 
 # Timezone
-timezone: America/New_York
+timezone: America/Chicago
