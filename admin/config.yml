@@ -67,6 +67,8 @@ collections:
     folder: "_tutorials"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    media_folder: "/assets/images/tutorials"
+    public_folder: "/assets/images/tutorials"
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "tutorial"}
       - {label: "Title", name: "title", widget: "string"}
@@ -97,7 +99,7 @@ collections:
     folder: "_explores"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    media_folder: "assets/images/explores"
+    media_folder: "/assets/images/explores"
     public_folder: "/assets/images/explores"
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "explore"}
